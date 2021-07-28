@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script>
+            var xhr = new XMLHttpRequest()
+            xhr.withCredentials = true
+            const type = localStorage.getItem('type') || ''
+            const domain = window.location.pathname.split('/')[1] || ''
+
+            if (type !== domain) window.location.href = `/${type}`
+        </script>
+    </head>
+    <body class="m-h-screen bg-gray-800">
+        <nav
+            class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
+        >
+            <div>
+                <a href="/" class="font-bold">Library</a>
+                <a href="/admin/book" class="ml-8">Books</a>
+                <a href="/admin/order">Orders</a>
+            </div>
+            <div>
+                <button id="logout">Logout</button>
+            </div>
+        </nav>
+        <div class="px-32 py-6 flex flex-wrap">
+            <label class="username w-full text-white mb-4">Title</label>
+            <input
+                class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                id="title"
+            />
+            <label class="username w-full text-white mb-4">Author</label>
+            <input
+                class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                id="author"
+            />
+            <label class="username w-full text-white mb-4">Category</label>
+            <input
+                class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                id="categories"
+            />
+            <label class="username w-full text-white mb-4">Publisher</label>
+            <input
+                class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                id="publisher"
+            />
+            <label class="username w-full text-white mb-4">Base price</label>
+            <input
+                class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                id="basePrice"
+            />
+            <button
+                class="bg-gray-700 text-white px-4 py-2 rounded mt-4"
+                id="create"
+            >
+                Create
+            </button>
+        </div>
+    </body>
+    <script>
+        function getValue(key) {
+            const inp = document.getElementById(key)
+            if (!inp) return null
+            return inp.value
+        }
+
+        const loginButton = document.getElementById('create')
+        loginButton.addEventListener('click', function () {
+            data = JSON.stringify({
+                title: getValue('title'),
+                author: getValue('author'),
+                categories: getValue('categories'),
+                publisher: getValue('publisher'),
+                basePrice: getValue('basePrice'),
+                qty: 1,
+            })
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    location.href = '/admin'
+                }
+            })
+
+            xhr.open('POST', '/api/book')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(data)
+        })
+    </script>
+    <script>
+        const logout = document.getElementById('logout')
+        logout.addEventListener('click', function () {
+            localStorage.removeItem('type')
+            window.location.href = '/'
+        })
+    </script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Library</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script>
+            localStorage.removeItem('type')
+        </script>
+    </head>
+    <body class="m-h-screen bg-gray-800">
+        <nav
+            class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
+        >
+            <a href="/" class="font-bold">Library</a>
+            <div>
+                <a
+                    href="/login"
+                    class="border border-white rounded px-8 py-2 mr-2"
+                    >Login</a
+                >
+                <a href="/login" class="border border-white rounded px-8 py-2"
+                    >Register</a
+                >
+            </div>
+        </nav>
+        <div class="py-6 px-32 flex justify-center items-center">
+            <div
+                class="w-1/2 px-3 py-5 border border-white rounded flex flex-wrap justify-center"
+            >
+                <label class="username w-full text-white mb-4">Username</label>
+                <input
+                    class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                    id="usernamefield"
+                />
+                <label class="username w-full text-white mb-4">Password</label>
+                <input
+                    class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                    id="passwordfield"
+                    type="password"
+                />
+                <label class="username w-full text-white mb-4"
+                    >Re type Password</label
+                >
+                <input
+                    class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                    id="repasswordfield"
+                    type="password"
+                />
+                <button
+                    class="bg-gray-700 text-white px-4 py-2 rounded"
+                    id="login"
+                >
+                    Register
+                </button>
+            </div>
+        </div>
+    </body>
+    <script>
+        const loginButton = document.getElementById('login')
+        loginButton.addEventListener('click', function () {
+            const userInp = document.getElementById('usernamefield')
+            const passwordInp = document.getElementById('passwordfield')
+            const repasswordInp = document.getElementById('repasswordfield')
+            
+            if (passwordInp.value !== repasswordInp.value) return alert('Passwords are not match')
+
+            const username = userInp.value
+            const password = passwordInp.value
+            if (!username || !password) return
+            var data = JSON.stringify({
+                username: username,
+                type: 'customer',
+                password: password,
+            })
+
+            const xhr = new XMLHttpRequest()
+            xhr.withCredentials = true
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    const user = resp.data.user
+                    const token = resp.data.token
+                    const type = resp.data.user.type
+
+                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('type', type)
+                    window.location.href = `/${type}`
+                }
+            })
+
+            xhr.open('POST', '/api/user/register')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(data)
+        })
+    </script>
+</html>

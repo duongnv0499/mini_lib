@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script>
+            var xhr = new XMLHttpRequest()
+            const type = localStorage.getItem('type') || ''
+            const domain = window.location.pathname.split('/')[1] || ''
+
+            if (type !== domain) window.location.href = `/${type}`
+        </script>
+    </head>
+    <body class="m-h-screen bg-gray-800">
+        <nav
+            class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
+        >
+            <div>
+                <a href="/" class="font-bold">Library</a>
+                <a href="/customer/order">Orders</a>
+            </div>
+            <div>
+                <button id="logout">Logout</button>
+            </div>
+        </nav>
+        <div class="px-32">
+            <div class="px-2 text-white mt-6">Current order:</div>
+            <div id="currentorder"></div>
+        </div>
+        <div class="px-32 py-6 flex flex-wrap" id="container"></div>
+    </body>
+    <script>
+        const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
+            (result, item) => {
+                return { ...result, [item.id]: item.title }
+            },
+            {}
+        )
+        const orderList = Object.entries(order)
+            .map(([key, title]) => {
+                return `<div class="bg-gray-700 w-1/4 p-2 rounded mr-4 mb-4 text-white">${title}</div>`
+            })
+            .join('')
+
+        function submit() {
+            const book = Object.keys(
+                JSON.parse(localStorage.getItem('cart') || '[]').reduce(
+                    (result, item) => {
+                        return { ...result, [item.id]: item.title }
+                    },
+                    {}
+                )
+            )
+            if (!book.length) return
+            const coInp = document.getElementById('checkoutDate')
+            const checkoutdate = new Date(coInp.value).getTime()
+            const dueInp = document.getElementById('dueDate')
+            const duedate = new Date(dueInp.value).getTime()
+
+            if (isNaN(checkoutdate) || isNaN(duedate)) return false
+            const customer = JSON.parse(localStorage.getItem('user') || '[]')[
+                '_id'
+            ]
+            const _data = {
+                customer,
+                book,
+                dueDate: duedate,
+                checkout: checkoutdate,
+            }
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    localStorage.setItem('cart', '[]')
+                    window.location.reload()
+                }
+            })
+
+            xhr.open('POST', '/api/user/bookCopy')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(JSON.stringify(_data))
+        }
+
+        document.getElementById(
+            'currentorder'
+        ).innerHTML = `<div class="flex flex-wrap px-2 mt-4">
+            ${orderList}
+        </div><div class="px-2 text-white">
+            Check out date
+            <input type="date" id="checkoutDate" class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4">
+            Due date
+            <input type="date" id="dueDate" class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4">
+        <button onclick="submit()" class="bg-blue-500 rounded px-3 py-2 text-white">Submit</button></div>`.trim()
+        function changeStatus(selectObject) {
+            const v = selectObject.value
+            const id = selectObject.name
+            data = JSON.stringify({
+                _id: id,
+                status: v,
+            })
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    window.location.reload()
+                }
+            })
+
+            xhr.open('PATCH', '/api/user/bookCopy')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(data)
+        }
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+
+                const container = document.getElementById('container')
+
+                container.innerHTML = resp.data
+                    .map(function (item) {
+                        const books = item.book
+                            .map(b => {
+                                return `<div>
+                                    ${b.title}
+                                </div>`
+                            })
+                            .join('')
+
+                        const checkout = new Date(
+                            item.checkout
+                        ).toLocaleDateString()
+                        const dueDate = new Date(
+                            item.dueDate
+                        ).toLocaleDateString()
+                        const interval =
+                            (new Date(dueDate).getTime() -
+                                new Date(checkout).getTime()) /
+                            1000 /
+                            60 /
+                            60 /
+                            24
+                        const price = Math.ceil(
+                            item.book.reduce((result, i) => {
+                                return result + interval * i.basePrice
+                            }, 0)
+                        ).toLocaleString()
+
+                        const data = `<div class="text-white w-1/3 p-2">
+                            <div class="bg-gray-700 rounded overflow-hidden ">
+                                <div class="p-4 border-b border-gray-900">
+                                    <div class="font-bold mb-2">
+                                        ${books}
+                                    </div>
+                                    <div class="text-xs italic mb-1">
+                                        Customer: ${
+                                            item.customer.name ||
+                                            item.customer.username
+                                        }
+                                    </div>
+                                    <div class="text-xs italic mb-1">
+                                        Checkout: ${checkout}
+                                    </div>
+                                    <div class="text-xs italic mb-1">
+                                        Due date: ${dueDate}
+                                    </div>
+                                    <div class="">
+                                        Price: ${price}
+                                    </div>
+                                </div>
+                            <div class="p-4">
+                                <div class="text-gray-400 mb-4">Status: ${
+                                    item.status
+                                }</div>
+                            </div>
+                            </div>
+                        </div>
+                    `
+                        return data.trim()
+                    })
+                    .join('')
+            }
+        })
+
+        const user = JSON.parse(localStorage.getItem('user'))._id
+        xhr.open('GET', '/api/user/bookCopy?customer=' + user)
+
+        xhr.send()
+    </script>
+    <script>
+        const logout = document.getElementById('logout')
+        logout.addEventListener('click', function () {
+            localStorage.removeItem('type')
+            window.location.href = '/'
+        })
+    </script>
+</html>
