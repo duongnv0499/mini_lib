@@ -1,3 +1,4 @@
+
 const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
@@ -10,10 +11,21 @@ const usersRouter = require('./routes/users')
 const mongoose = require('mongoose')
 const app = express()
 app.use(cors())
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
+
+console.log(process.env)
+//mongodb+srv://root:123@cluster0.17a3s.mongodb.net/lib?retryWrites=true&w=majority
+//mongodb+srv://livi:liviTechAt2021@demostore.meqou.mongodb.net/qls
+mongoose
+.connect("mongodb+srv://root:123@cluster0.17a3s.mongodb.net/lib?retryWrites=true&w=majority", {
     useUnifiedTopology: true,
+    useNewUrlParser: true,
 })
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log(err.message);
+});
+
+
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
