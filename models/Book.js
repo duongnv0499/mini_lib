@@ -7,22 +7,13 @@ const Book = model(
     new Schema({
         title: String,
         banner: String,
-        author: {
-            type: Types.ObjectId,
-            ref: 'author',
-        },
-        categories: {
-            type: [Types.ObjectId],
-            ref: 'category',
-        },
+        author: [String],
+        categories: [String],
         basePrice: { type: Number, default: 0 },
-        publisher: {
-            type: [Types.ObjectId],
-            ref: 'publisher',
-        },
+        publisher: String,
         publishedDate: Date,
         info: String,
-        available: { type: Boolean, default: true },
+        quantity:{ type: Number, default: 0 },
     }),
     'book'
 )
