@@ -18,6 +18,9 @@ router.get('/admin/new', function (req, res, next) {
 router.get('/admin/order', function (req, res, next) {
     res.render('order.html')
 })
+router.get('/admin/edit', function (req, res, next) {
+    res.render('edit.html')
+})
 router.get('/customer', function (req, res, next) {
     res.render('customer.html')
 })

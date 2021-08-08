@@ -60,7 +60,7 @@
     />
     <button
             class="bg-gray-700 text-white px-4 py-2 rounded mt-4"
-            id="create"
+            id="edit"
     >
         Create
     </button>
@@ -73,7 +73,7 @@
         return inp.value
     }
 
-    const loginButton = document.getElementById('create')
+    const loginButton = document.getElementById('edit')
     loginButton.addEventListener('click', function () {
         data = JSON.stringify({
             title: getValue('title'),
@@ -92,9 +92,8 @@
             }
         })
 
-        xhr.open('POST', '/api/book')
+        xhr.open('POST', '/api/edit')
         xhr.setRequestHeader('Content-Type', 'application/json')
-
         xhr.send(data)
     })
 </script>
