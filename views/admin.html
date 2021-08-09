@@ -120,7 +120,6 @@
     </script>
 </html> -->
 
-
 <!DOCTYPE html>
  <html lang="en">
 
@@ -196,7 +195,7 @@
  
                          <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
                          <li class="page-scroll"><a href="#portfolio">Giá Sách</a></li>
-                         <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
+                         <li class="page-scroll"><a href="/admin/order">Đơn mượn</a></li>
                          
                          <li ><a id="logout" class="btn btn-border">logout</a></li>
                          
@@ -208,7 +207,7 @@
          </nav><!-- /.primary-navigation -->
      </header><!-- /#header -->
 
-     <div id="hero" class="hero">
+     <!-- <div id="hero" class="hero">
          <div class="container">
              <div class="row">
  
@@ -234,7 +233,8 @@
 
                          <a href="#portfolio" id="search-btn" class="btn btn-fill">Search</a>
                          <div class="clearfix visible-xxs"></div>
-                         <a href="#portfolio" class="btn btn-border">Explore</a>
+                         <a href="#portfolio" class="btn btn-border">Exp
+                             lore</a>
                      </div>
                  </div>
              
@@ -244,11 +244,11 @@
  
              </div>
          </div>
-     </div><!-- /.hero -->
+     </div> -->
          <section id="portfolio" class="site-section section-portfolio">
 
             <div class="sec-center col-md-2"> 
-                <a id="add" class="btn btn-border">Thêm sách</a>
+                <a href="/admin/new" id="add" class="btn btn-border">Thêm sách</a>
                 
                 <div class="checkbox-container">
                     <ul id="search-category" class="ks-cboxtags">
@@ -411,9 +411,6 @@
         xhr.open('GET', '/api/book')
         xhr.send()
     }
-
-
-
 
 
     list_all_book('')

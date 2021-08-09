@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin</title>
-    <link
-            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-            rel="stylesheet"
+
+         <!-- Basic Page Needs
+     ================================================== -->
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+     <title>Mini Lib</title>
+ 
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <meta name="keywords" content="">
+ 
+     <!-- Mobile Specific Metas
+     ================================================== -->
+     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+ 
+     <!-- Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+ 
+     <!-- Custom styles for this template -->
+     <link href="/stylesheets/style.css" rel="stylesheet">
+     <link href="/stylesheets/responsive.css" rel="stylesheet">
+
     <script>
         var xhr = new XMLHttpRequest()
         xhr.withCredentials = true
@@ -14,8 +38,42 @@
         if (type !== domain) window.location.href = `/${type}`
     </script>
 </head>
-<body class="m-h-screen bg-gray-800">
-<nav
+<body class="m-h-screen">
+
+    <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+
+                    <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse" aria-expanded="false" >
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                    <!-- <a href="#hero" class="site-logo"><img src="/img/logo.png" alt="logo"></a> -->
+
+                </div><!-- /.navbar-header -->
+
+                <div class="main-menu" id="portfolio-perfect-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
+                        <li class="page-scroll"><a href="/admin">Giá Sách</a></li>
+                        <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
+                        <li class="page-scroll"><a href="/customer/order">Lịch sử mượn</a></li>
+                        
+                        <li ><a id="logout" class="btn btn-border">logout</a></li>
+                        
+                    </ul><!-- /.navbar-nav -->
+
+                </div><!-- /.navbar-collapse -->
+
+            </div>
+        </nav><!-- /.primary-navigation -->
+    </header><!-- /#header -->
+<!-- <nav
         class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
 >
     <div>
@@ -59,7 +117,80 @@
             id="create"
     >
         Create
-    </button>
+    </button> -->
+
+    <section id="contact" class="site-section section-form text-center">
+        <div class="container">
+
+            <h3>Thêm sách</h3>
+            <img src="/img/lines.svg" class="img-lines" alt="lines">
+            <form>
+                <div class="add-form row">
+                    <div class="col-sm-8">
+                        <div>
+                            <input type="text" id="name" class="form-control mt-x-0" placeholder="Tên sách" required>
+                        </div>
+                        <div>
+                            <input type="text" id="publisher" class="form-control mt-x-0" placeholder="Nhà xuất bản" required>
+                        </div>
+                        <div>
+                            <input type="text" id="authors" class="form-control" placeholder="Tác giả" required>   
+                        </div>
+                        <div>
+                            <input type="text" id="quantity" class="form-control" placeholder="Số lượng" required>   
+                        </div>
+                        <div>
+                            <input type="text" id="added_date" class="form-control" placeholder="Ngày Thêm" required>   
+                        </div>
+                        <div>
+                            <input type="text" id="price" class="form-control" placeholder="Giá tiền" required>   
+                        </div>
+                        <div>
+                            <div class="sec-center col-md-9"> 
+                                <div class="checkbox-container">
+                                    <ul id="search-category" class="ks-cboxtags">
+                                      <li><input type="checkbox" id="checkboxOne" value="Tâm lý" checked onchange="search_category()"><label for="checkboxOne">Tâm lý</label></li>
+                                      <li><input type="checkbox" id="checkboxTwo" value="hài hước" checked onchange="search_category()"><label for="checkboxTwo">hài hước</label></li>
+                                      <li><input type="checkbox" id="checkboxThree" value="lịch sử" checked onchange="search_category()"><label for="checkboxThree">lịch sử:</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                                    </ul>
+                                  </div>
+                                  
+                                  
+                            </div>
+                            <div class="col-sm-3">
+                                <button class="add-category-btn btn btn-border" type="submit">Thêm Thể Loại</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button href="#" class="col-sm-12 add-image-btn btn btn-border" type="submit">Thêm Ảnh </button>
+                        <img class="col-sm-12" src ="/img/book3.png" alt="chua them">
+                                           </div>
+
+                    <div class="col-sm-12">
+                        <input type="text" id="categories" class="form-control" placeholder="Thể loại" required>
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        <textarea id="message" id="content" class="form-control" placeholder="Nội Dung" required></textarea>
+                    </div>
+                </div>
+                <button id="create" class="btn btn-border">Thêm</button>
+            </form>
+            
+        </div>
+    </section><!-- /.section-form -->
 </div>
 </body>
 <script>
@@ -74,23 +205,25 @@
     const loginButton = document.getElementById('create')
     loginButton.addEventListener('click', function () {
         data = JSON.stringify({
-            title: getValue('title'),
-            author: getValue('author').split(","),
+            title: getValue('name'),
+            author: getValue('authors').split(","),
             categories: getValue('categories').split(","),
             publisher: getValue('publisher'),
-            basePrice: getValue('basePrice'),
+            basePrice: getValue('price'),
             quantity: getValue('quantity'),
             addDate: now.toLocaleString(),
-            info: getValue('info')
+            info: getValue('content')
         })
-
-        // console.log(data)
+        console.log(data)
+        alert("fucku2")
 
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
+                alert("fucku1")
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
                 location.href = '/admin'
+                alert("fucku")
             }
         })
 
@@ -106,4 +239,14 @@
         window.location.href = '/'
     })
 </script>
+
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="javascripts/skrollr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
+<script src="javascripts/jquery.countTo.min.js"></script>
+<script src="javascripts/script.js"></script> -->
 </html>

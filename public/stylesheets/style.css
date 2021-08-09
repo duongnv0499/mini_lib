@@ -691,3 +691,32 @@ ul.ks-cboxtags li input[type="checkbox"] {
 ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   border: 2px solid #e9a1ff;
 }
+
+
+.add-form input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.add-image-btn {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        line-height: 50px;
+        font-size: 13px;
+        text-transform: uppercase;
+        border-radius: 0;
+        transition: box-shadow 0.25s ease-in-out;
+        -moz-transition: box-shadow 0.25s ease-in-out;
+        -webkit-transition: box-shadow 0.25s ease-in-out;
+        -o-transition: box-shadow 0.25s ease-in-out;
+        -ms-transition: box-shadow 0.25s ease-in-out;
+
+}
+
+.add-category-btn {
+    margin-left: 0px;
+}
+
+.categories-sec-form col-sm-3 {
+    padding-left:  0px;
+}
