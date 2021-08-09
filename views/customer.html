@@ -59,13 +59,13 @@
                                         ${item.title}
                                     </div>
                                     <div class="text-xs italic mb-1">
-                                        Author: ${item.author[0].name}
+                                        Author: ${item.author}
                                     </div>
                                     <div class="text-xs italic mb-1">
-                                        Publisher: ${item.publisher[0].name}
+                                        Publisher: ${item.publisher}
                                     </div>
                                     <div class="text-xs italic">
-                                        Category: ${item.categories[0].name}
+                                        Category: ${item.categories}
                                     </div>
                                     <div class="text-xs italic">
                                         Base price: ${item.basePrice}
@@ -351,10 +351,10 @@
                             </div>
                             <div class="modal-body">
                                 <h4 class="modal-title">${item.title}</h4>
-                                <h5> thể loại ${item.categories[0].name}
+                                <h5> thể loại ${item.categories}
                                 </h5>
-                                <h5> tác giả : ${item.author[0].name}  </h5>
-                                <h5> Nhà xuất bản :  ${item.publisher[0].name}  </h5>
+                                <h5> tác giả : ${item.author}  </h5>
+                                <h5> Nhà xuất bản :  ${item.publisher}  </h5>
                                 <p>revew noi dung...</p>
                             </div>
                             <div class="modal-footer">
@@ -376,7 +376,7 @@
                                     <h5>
                                         ${item.title}
                                     </h5>
-                                    <h6>${item.author[0].name}</h6>
+                                    <h6>${item.author}</h6>
                                     <h6>${item.basePrice} VND<h6>
                                     <a href="#" data-toggle="modal" data-target="#${name}"><span class="glyphicon glyphicon-eye-open"></span></a>
                                     <a id="${item._ids[0]}" onclick={add(this)} ><span class="glyphicon glyphicon-link"></span></a>
