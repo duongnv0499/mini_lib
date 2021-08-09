@@ -1,35 +1,30 @@
 const Book = require('../../models/Book')
 
-const createBook = async req => {
+const editBook = async req => {
     const {
+        id,
         title,
-        qty,
         author,
         categories,
-        basePrice,
         publisher,
-        publishedDate,
+        basePrice,
+        quantity,
         info,
     } = req.body
 
-    const books = Array.from(Array(qty || 1)).map(
-        () =>
-            new Book({
-                title,
-                author,
-                categories,
-                basePrice,
-                publisher,
-                publishedDate,
-                info,
-            })
-    )
-
-    return Promise.all(
-        books.map(async newBook => {
-            return (await newBook.save()).toJSON()
-        })
-    )
+    // const existed = await Book.findOne({_id: id})
+    // if (!existed) {
+    //     return null
+    // } else return null
+    return Book.findOneAndUpdate({_id: id}, {
+        title: title,
+        author: author,
+        quantity: quantity,
+        categories: categories,
+        basePrice: basePrice,
+        publisher: publisher,
+        info: info
+    });
 }
 
-module.exports = createBook
+module.exports = editBook

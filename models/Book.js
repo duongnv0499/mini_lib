@@ -1,6 +1,6 @@
-const { Types } = require('mongoose')
-const { model } = require('mongoose')
-const { Schema } = require('mongoose')
+const {Types} = require('mongoose')
+const {model} = require('mongoose')
+const {Schema} = require('mongoose')
 
 const Book = model(
     'book',
@@ -9,11 +9,11 @@ const Book = model(
         banner: String,
         author: [String],
         categories: [String],
-        basePrice: { type: Number, default: 0 },
+        basePrice: {type: Number, default: 0},
         publisher: String,
-        publishedDate: Date,
+        addDate: String,
         info: String,
-        quantity:{ type: Number, default: 0 },
+        quantity: {type: Number, default: 0},
     }),
     'book'
 )

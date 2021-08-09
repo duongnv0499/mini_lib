@@ -3,33 +3,36 @@ const Book = require('../../models/Book')
 const createBook = async req => {
     const {
         title,
-        qty,
         author,
         categories,
         basePrice,
+        quantity,
         publisher,
-        publishedDate,
+        addDate,
         info,
     } = req.body
 
-    const books = Array.from(Array(qty || 1)).map(
-        () =>
-            new Book({
-                title,
-                author,
-                categories,
-                basePrice,
-                publisher,
-                publishedDate,
-                info,
-            })
-    )
-
-    return Promise.all(
-        books.map(async newBook => {
-            return (await newBook.save()).toJSON()
+    const books =
+        new Book({
+            title,
+            author,
+            categories,
+            basePrice,
+            publisher,
+            quantity,
+            addDate,
+            info,
         })
-    )
+
+    const existed = await Book.findOne({title: title, author: author, publisher: publisher})
+    if (existed) {
+        return null
+    } else {
+        await books.save(function (err, doc) {
+            if (err) return console.error(err);
+            console.log("New book added succussfully!");
+        })
+    }
 }
 
 module.exports = createBook
