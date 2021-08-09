@@ -93,8 +93,8 @@
         data = JSON.stringify({
             id: order._id,
             title: getValue('title'),
-            author: getValue('author'),
-            categories: getValue('categories'),
+            author: getValue('author').split(","),
+            categories: getValue('categories').split(","),
             publisher: getValue('publisher'),
             basePrice: getValue('basePrice'),
             quantity: getValue('quantity'),

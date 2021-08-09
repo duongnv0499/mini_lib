@@ -15,7 +15,7 @@ const getBooks = async req => {
         {
             $group: {
                 _id: '$_id',
-                count: { $sum: 1 },
+                // count: { $sum: 1 },
                 title: { $first: '$title' },
                 author: { $first: '$author' },
                 banner: { $first: '$banner' },

@@ -45,6 +45,12 @@
             location.href = '/admin/edit'
         }
 
+        function xoa(i) {
+            localStorage.setItem('delete', '[]')
+            localStorage.setItem('delete', JSON.stringify(i))
+            // console.log(localStorage)
+        }
+
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
@@ -54,7 +60,7 @@
 
                 container.innerHTML = resp.data
                     .map(function (item) {
-                        console.log(item)
+                        console.log(item.id)
 
                         const data = `<div href="/admin/edit" class="text-white w-1/3 p-2">
                             <div class="bg-gray-700 rounded overflow-hidden">
@@ -85,6 +91,11 @@
                                     <button class="bg-blue-500 text-white mt-4 bg-blue-500 px-3 py-2 rounded" name="${
                             item.title
                         }" id="${item._ids[0]}" onclick={edit(${JSON.stringify(item)})}>
+                                        Edit
+                                    </button>
+                                    <button class="bg-blue-500 text-white mt-4 bg-blue-500 px-3 py-2 rounded" name="${
+                            item.title
+                        }" id="${item._ids[0]}" onclick={xoa(${JSON.stringify(item.id)})}>
                                         Edit
                                     </button>
                                 </div>
