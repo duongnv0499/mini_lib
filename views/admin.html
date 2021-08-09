@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Admin</title>
@@ -70,7 +70,7 @@
                                         Publisher: ${item.publisher[0].name}
                                     </div>
                                     <div class="text-xs italic">
-                                        Category: ${item.categories[0].name}
+                                        Category: ${item.categories}
                                     </div>
                                     <div class="text-xs italic">
                                         Base price: ${item.basePrice}
@@ -96,4 +96,345 @@
             window.location.href = '/'
         })
     </script>
-</html>
+</html> -->
+
+
+<!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+ 
+     <!-- Basic Page Needs
+     ================================================== -->
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+     <title>Mini Lib</title>
+ 
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <meta name="keywords" content="">
+ 
+     <!-- Mobile Specific Metas
+     ================================================== -->
+     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+ 
+     <!-- Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+ 
+     <!-- Favicon
+     ================================================== -->
+     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png"> -->
+     <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png"> -->
+ 
+     <!-- Stylesheets
+     ================================================== -->
+     <!-- Bootstrap core CSS -->
+     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+ 
+     <!-- Custom styles for this template -->
+     <link href="/stylesheets/style.css" rel="stylesheet">
+     <link href="/stylesheets/responsive.css" rel="stylesheet">
+
+
+    <script>
+
+        var xhr = new XMLHttpRequest()
+        const type = localStorage.getItem('type') || ''
+        const domain = window.location.pathname.split('/')[1] || ''
+
+        if (type !== domain) window.location.href = `/${type}`
+
+    </script>
+ 
+ </head>
+ <body>
+    
+     <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
+         <nav id="primary-navigation" class="site-navigation">
+             <div class="container">
+                 <div class="navbar-header page-scroll">
+ 
+                     <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse" aria-expanded="false" >
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                     </button>
+                     
+                     <!-- <a href="#hero" class="site-logo"><img src="/img/logo.png" alt="logo"></a> -->
+ 
+                 </div><!-- /.navbar-header -->
+ 
+                 <div class="main-menu" id="portfolio-perfect-collapse">
+ 
+                     <ul class="nav navbar-nav navbar-right">
+ 
+                         <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
+                         <li class="page-scroll"><a href="#portfolio">Giá Sách</a></li>
+                         <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
+                         
+                         <li ><a id="logout" class="btn btn-border">logout</a></li>
+                         
+                     </ul><!-- /.navbar-nav -->
+ 
+                 </div><!-- /.navbar-collapse -->
+ 
+             </div>
+         </nav><!-- /.primary-navigation -->
+     </header><!-- /#header -->
+
+     <div id="hero" class="hero">
+         <div class="container">
+             <div class="row">
+ 
+                 <div class="col-md-6">
+                     <h1>Library</h1>
+                     <div class="page-scroll">
+                         <p class="job-title">Search a book, category, publisher...</p>
+                         <div class="seach-bar">
+                            <select class="form-select col-sm-3" aria-label="Default select example">
+                                <option selected>choose one</option>
+                                <option value="1">Name</option>
+                                <option value="2">Category</option>
+                                <option value="3">Publisher</option>
+
+                                
+                              </select>
+                              <div class="col-sm-9 search-box">
+                                <input id="search-field" type="text" name="name" data-role="tagsinput" value='' class="form-control mt-x-0" placeholder="Name" required>
+
+                            </div>
+
+                         </div>
+
+                         <a href="#portfolio" id="search-btn" class="btn btn-fill">Search</a>
+                         <div class="clearfix visible-xxs"></div>
+                         <a href="#portfolio" class="btn btn-border">Explore</a>
+                     </div>
+                 </div>
+             
+                 <div class="col-md-6 text-right">
+                     <img  >
+                 </div>
+ 
+             </div>
+         </div>
+     </div><!-- /.hero -->
+         <section id="portfolio" class="site-section section-portfolio">
+
+            <div class="sec-center col-md-2"> 
+                <a id="add" class="btn btn-border">Thêm sách</a>
+                
+                <div class="checkbox-container">
+                    <ul id="search-category" class="ks-cboxtags">
+                      <li><input type="checkbox" id="checkboxOne" value="Tâm lý" checked onchange="search_category()"><label for="checkboxOne">Tâm lý</label></li>
+                      <li><input type="checkbox" id="checkboxTwo" value="hài hước" checked onchange="search_category()"><label for="checkboxTwo">hài hước</label></li>
+                      <li><input type="checkbox" id="checkboxThree" value="lịch sử" checked onchange="search_category()"><label for="checkboxThree">lịch sử:</label></li>
+                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
+                    </ul>
+                    
+                  
+                  </div>
+                  
+            </div>
+
+             <div class="container col-md-9">
+                 <div class="book-shell">
+                     <h3>Giá sách</h3>
+                     <img src="/img/lines.svg" class="img-lines" alt="lines">
+                 </div>
+                 <div id="portfolio-container" class="row">
+                 </div>
+             </div>
+         </section><!-- /.secton-portfolio -->
+ 
+ 
+         <main id="main" class="site-main">
+
+ 
+         <!-- <section id="contact" class="site-section section-form text-center">
+             <div class="container">
+ 
+                 <h3>Contact</h3>
+                 <img src="/img/lines.svg" class="img-lines" alt="lines">
+                 <form>
+                     <div class="row">
+                         <div class="col-sm-6">
+                             <input type="text" name="name" class="form-control mt-x-0" placeholder="Name" required>
+                         </div>
+                         <div class="col-sm-6">
+                             <input type="email" name="email" class="form-control" placeholder="Email" required>   
+                         </div>
+                         <div class="col-sm-12">
+                             <textarea name="message" id="mesaage" class="form-control" placeholder="Message" required></textarea>
+                         </div>
+                     </div>
+                     <button href="#" class="btn btn-border" type="submit">Hire Me <span class="glyphicon glyphicon-send"></span></button>
+                 </form>
+             </div>
+         </section>
+         /.section-form -->
+ 
+     </main><!-- /#main -->
+ 
+
+
+
+    <script>        
+
+        function add(i) {
+                    const item = { title: i.name, id: i.id }
+                    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+                    localStorage.setItem('cart', JSON.stringify([...cart, item]))
+                    alert('Add book to cart!')
+                }
+
+        function list_all_category() {
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+
+                const container = document.getElementById('search-category')
+                console.log (JSON.stringify(resp.data))
+                container.innerHTML = resp.data
+                    .map(function (item, index) {
+                        id = "checkbox"+String(index);
+                        const data =
+                        `
+                        <li><input type="checkbox" id="${id}" value="${JSON.stringify(item)}" checked onchange="search_category()"><label for="${id}">${JSON.stringify(item)}</label></li>
+                        `
+                        return data.trim()
+                    })
+                    .join('')
+            }
+        })
+        xhr.open('GET', '/api/book')
+        xhr.send()
+
+        }
+
+        function list_all_book(search) {
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+
+                const container = document.getElementById('portfolio-container')
+                console.log (resp.data)
+                book_data =resp.data
+                console.log(book_data)
+                container.innerHTML = resp.data
+                    .map(function (item, index) {
+                    if (item.title == search || search=='') {
+                        name=String("portfolioItem"+index);
+                        modal = document.createElement('div')
+                        modal.id=name;
+                        modal.className="modal fade";
+                        modal.role="dialog";
+                        modal_content = 
+                        `
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <img class="img-res" src="/img/portfolio-5.jpg" alt="">
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="modal-title">${item.title}</h4>
+                                <h5> thể loại ${item.categories}
+                                </h5>
+                                <h5> tác giả : ${item.author}  </h5>
+                                <h5> Nhà xuất bản :  ${item.publisher}  </h5>
+                                <p>revew noi dung...</p>
+                            </div>
+                            <div class="modal-footer">
+                            <a href="#" class="btn btn-fill">Add to cart</a>
+                            </div>
+                        </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                        `
+                        modal.innerHTML = modal_content;
+                        document.body.appendChild(modal);
+
+
+                        const data =
+                        `
+                        <div class="col-md-3 col-xs-4">
+                            <div class="portfolio-item">
+                                <img src="/img/bg.jpeg" class="img-res" alt="">
+                                <div class="portfolio-item-info">
+                                    <h5>
+                                        ${item.title}
+                                    </h5>
+                                    <h6>${item.author}</h6>
+                                    <h6>${item.basePrice} VND<h6>
+                                    <a href="#" data-toggle="modal" data-target="#${name}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                    <a id="${item._ids[0]}" onclick={add(this)} ><span class="glyphicon glyphicon-link"></span></a>
+                                </div><!-- /.portfolio-item-info -->
+                            </div><!-- /.portfolio-item -->
+                        </div>
+
+                        `
+                        return data.trim()
+                    }   
+                    })
+                    .join('')
+            }
+        })
+        xhr.open('GET', '/api/book')
+        xhr.send()
+    }
+
+
+
+
+
+    list_all_book('')
+    //list_all_category()
+
+
+
+    </script>
+    <script>
+        const logout = document.getElementById('logout')
+        logout.addEventListener('click', function () {
+            localStorage.removeItem('type')
+            window.location.href = '/'
+        })
+
+        const search = document.getElementById('search-btn')
+        search.addEventListener('click', function() {
+            const searchF = document.getElementById('search-field')
+            console.log(searchF.value)
+            list_all_book(searchF.value)
+        })
+
+
+    </script>
+    <script>
+        function search_category() {
+            console.log("asiddf")
+        }
+
+
+    </script>
+
+     <!-- Bootstrap core JavaScript
+     ================================================== -->
+     <!-- Placed at the end of the document so the pages load faster -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="javascripts/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+     <script src="javascripts/skrollr.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
+     <script src="javascripts/jquery.countTo.min.js"></script>
+     <script src="javascripts/script.js"></script>
+     
+   
+ </body>
+ </html>
