@@ -282,13 +282,19 @@
              </div>
          </section>
          /.section-form -->
+
+         <button href="#" class="btn btn-border" onclick="temp()">jndkjndkjndknkdjde <span class="glyphicon glyphicon-send"></span></button>
+         
  
      </main><!-- /#main -->
  
 
 
 
-    <script>        
+    <script>    
+    function temp() {
+        console.log(_data)
+    }    
 
         function add(i) {
                     const item = { title: i.name, id: i.id }
@@ -322,6 +328,7 @@
         xhr.send()
 
         }
+        var _data = {}
 
         function list_all_book(search) {
         xhr.addEventListener('readystatechange', function () {
@@ -333,6 +340,7 @@
                 console.log (resp.data)
                 book_data =resp.data
                 console.log(book_data)
+                _data=resp.data
                 container.innerHTML = resp.data
                     .map(function (item, index) {
                     if (item.title == search || search=='') {

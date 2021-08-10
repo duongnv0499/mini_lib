@@ -15,6 +15,9 @@ router.get('/admin', function (req, res, next) {
 router.get('/admin/new', function (req, res, next) {
     res.render('newbook.html')
 })
+router.get('/admin/history', function (req, res, next) {
+    res.render('history.html')
+})
 router.get('/admin/order', function (req, res, next) {
     res.render('order.html')
 })
