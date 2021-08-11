@@ -263,6 +263,9 @@
             xhr.send(data)
         }
 
+        localStorage.setItem('delete', '[]')
+        
+        console.log (localStorage)
         
 
         xhr.addEventListener('readystatechange', function () {
