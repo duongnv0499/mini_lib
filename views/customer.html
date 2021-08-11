@@ -291,16 +291,19 @@
 
 
 
-    <script>    
-    function temp() {
-        console.log(_data)
-    }    
+    <script>     
 
         function add(i) {
-                    const item = { title: i.name, id: i.id }
+            // localStorage.removeItem('cart');
+                    console.log(document.getElementById(i.id).className)
+                    obj = document.getElementById(i.id)
+                    // console.log(i.id)
+
+                    const item = { title: obj.className, id: i.id }
                     const cart = JSON.parse(localStorage.getItem('cart') || '[]')
                     localStorage.setItem('cart', JSON.stringify([...cart, item]))
-                    alert('Add book to cart!')
+                    console.log(cart)
+                    // alert(cart)
                 }
 
         function list_all_category() {
@@ -311,7 +314,7 @@
                 if (!resp.success) return alert(resp.message)
 
                 const container = document.getElementById('search-category')
-                console.log (JSON.stringify(resp.data))
+                //console.log (JSON.stringify(resp.data))
                 container.innerHTML = resp.data
                     .map(function (item, index) {
                         id = "checkbox"+String(index);
@@ -387,7 +390,7 @@
                                     <h6>${item.author}</h6>
                                     <h6>${item.basePrice} VND<h6>
                                     <a href="#" data-toggle="modal" data-target="#${name}"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                    <a id="${item._ids[0]}" onclick={add(this)} ><span class="glyphicon glyphicon-link"></span></a>
+                                    <a id="${item._ids[0]}" class="${item.title}" onclick="add(this)"><span class="glyphicon glyphicon-link"></span></a>
                                 </div><!-- /.portfolio-item-info -->
                             </div><!-- /.portfolio-item -->
                         </div>

@@ -66,50 +66,105 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
-                        <li class="page-scroll"><a href="#portfolio">Giá Sách</a></li>
+                        <li class="page-scroll"><a href="/customer">Tìm Kiếm</a></li>
+                        <li class="page-scroll"><a href="/customer">Giá Sách</a></li>
                         <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
                         
                         <li ><a id="logout" class="btn btn-border">logout</a></li>
                         
-                    </ul><!-- /.navbar-nav -->
+                    </ul>
 
-                </div><!-- /.navbar-collapse -->
+                </div>
 
             </div>
-        </nav><!-- /.primary-navigation -->
-    </header><!-- /#header -->
+        </nav>
+    </header>
 
 
-<nav
-        class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
->
-    <div>
-        <a href="/" class="font-bold">Library</a>
-        <a href="/customer/order">Orders</a>
+
+    <section id="portfolio" class="site-section section-portfolio">
+
+        <div class="sec-center">
+
+            <div class ="col-sm-3"> 
+
+                <div class="order-form">
+            
+                    <label for="checkout">Ngày hứa trả:</label>
+                    <input type="date" id="checkoutDate" name="checkout" class="form-control">
+                    
+                    <label for="duedate">Hạn trả:</label>
+                    <input type="date" id="dueDate" name="duedate" class="form-control">
+                <button onclick="submit()" class="btn">Xac Nhan</button></div>
+            </div>
+            <div class ="col-sm-6">
+                <div id="currenoder_cont"></div>
+            
+                <div>
+                    <div>Sách Hiện Tại:</div>
+                    <div class="container" id="currentorder">
+                    </div>
+
+                </div>
+
+            </div>
+           
+
+        </div>
+     </section>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<hr>
+<section id="portfolio" class="site-section section-portfolio">
+
+    <div class="container" id="cards">
+
     </div>
-    <div>
-        <button id="logout">Logout</button>
-    </div>
-</nav>
-<div class="px-32">
-    <div class="px-2 text-white mt-6">Current order:</div>
-    <div id="currentorder"></div>
-</div>
-<div class="px-32 py-6 flex flex-wrap" id="container"></div>
+</section>
+
+
 </body>
+
+
+
+
+
+
 <script>
+
+    console.log("first")
     const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
         (result, item) => {
+            // console.log (item)
+            // console.log(result)
             return {...result, [item.id]: item.title}
         },
         {}
     )
+
+
+
+    // console.log (order);
+
     const orderList = Object.entries(order)
         .map(([key, title]) => {
-            return `<div class="bg-gray-700 w-1/4 p-2 rounded mr-4 mb-4 text-white">${title}</div>`
+            return`<div class="card col-md-2 card-7"><div class="font-bold mb-2">${title}</div></div>`
         })
         .join('')
+
+        // orderList
+
+    console.log (Object.entries(order))
 
     function submit() {
         const book = Object.keys(
@@ -141,8 +196,11 @@
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
+                console.log("second")
                 localStorage.setItem('cart', '[]')
                 window.location.reload()
+                console.log(resp.data)
+                
             }
         })
 
@@ -156,12 +214,7 @@
         'currentorder'
     ).innerHTML = `<div class="flex flex-wrap px-2 mt-4">
             ${orderList}
-        </div><div class="px-2 text-white">
-            Check out date
-            <input type="date" id="checkoutDate" class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4">
-            Due date
-            <input type="date" id="dueDate" class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4">
-        <button onclick="submit()" class="bg-blue-500 rounded px-3 py-2 text-white">Submit</button></div>`.trim()
+        </div>`.trim()
 
     function changeStatus(selectObject) {
         const v = selectObject.value
@@ -190,13 +243,15 @@
             const resp = JSON.parse(this.responseText)
             if (!resp.success) return alert(resp.message)
 
-            const container = document.getElementById('container')
+            const container = document.getElementById('cards')
+
 
             container.innerHTML = resp.data
                 .map(function (item) {
                     const books = item.book
                         .map(b => {
                             return `<div>
+                                1x 
                                     ${b.title}
                                 </div>`
                         })
@@ -220,38 +275,37 @@
                             return result + interval * i.basePrice
                         }, 0)
                     ).toLocaleString()
-
-                    const data = `<div class="text-white w-1/3 p-2">
-                            <div class="bg-gray-700 rounded overflow-hidden ">
-                                <div class="p-4 border-b border-gray-900">
+                    let card_status = "card1";
+                    const data =
+                    `<div class="card col-md-3 ${card_status}">
                                     <div class="font-bold mb-2">
                                         ${books}
                                     </div>
+                                    <hr>
                                     <div class="text-xs italic mb-1">
-                                        Customer: ${
+                                        Tình trạng: ${item.status}
+                                    </div>
+                                    <hr>
+                                    <div class="text-xs italic mb-1">
+                                        Người Mượn: ${
                         item.customer.name ||
                         item.customer.username
                     }
                                     </div>
+                                     <div class="text-xs italic mb-1">
+                                        Ngày hứa trả : ${checkout}
+                                    </div>
+                
                                     <div class="text-xs italic mb-1">
-                                        Checkout: ${checkout}
+                                        Ngày hết Hạn: ${dueDate}
                                     </div>
-                                    <div class="text-xs italic mb-1">
-                                        Due date: ${dueDate}
-                                    </div>
-                                    <div class="">
-                                        Price: ${price}
-                                    </div>
-                                </div>
-                            <div class="p-4">
-                                <div class="text-gray-400 mb-4">Status: ${
-                        item.status
-                    }</div>
-                            </div>
-                            </div>
+                                    
+                               
+                            
                         </div>
-                    `
+                        `
                     return data.trim()
+
                 })
                 .join('')
         }

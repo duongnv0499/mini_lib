@@ -834,3 +834,11 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   #total-price {
       font-style: italic;
   }
+
+  .order-form label {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
