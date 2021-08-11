@@ -272,6 +272,7 @@
         <div class="container col-md-9">
             <div class="book-shell">
                 <h3>Giá sách</h3>
+                <h5 id="total-price"></h5>
                
                 <div class="search-group">
                     <input id="search-field" type="text" >
@@ -324,6 +325,7 @@
 
         let _category = []
         let _publisher = []
+        let _total_price = 0
 
         function list_all_category() {
             var cat = new XMLHttpRequest()
@@ -367,13 +369,16 @@
                 if (this.readyState === 4) {
                     const resp = JSON.parse(this.responseText)
                     if (!resp.success) return alert(resp.message)
-                    console.log(resp.data)
+                    console.log("publisher")
+                    console.log (resp.data)
 
                     for (const i in resp.data) {
-                        if (!_publisher.includes(resp.data.publisher)) {
-                            _publisher.push(resp.data.publisher)
+                        if (!_publisher.includes(resp.data[i].publisher)) {
+                            _publisher.push(resp.data[i].publisher)
+                            
                         }
                     }
+                    
 
                     const container = document.getElementById('search-publisher')
                     container.innerHTML = _publisher
@@ -427,6 +432,7 @@
                 if (way === '321') { return ((x > y) ? -1 : ((x < y) ? 1 : 0)); }
             });
         }
+        
 
         function list_all_book(search, type) {
             xhr.addEventListener('readystatechange', function () {
@@ -434,14 +440,8 @@
                     const resp = JSON.parse(this.responseText)
                     if (!resp.success) return alert(resp.message)
 
-
                     sorted_data = sortJSON(resp.data, 'title', '123')
-                    
-
-
-
-
-
+                
                     const container = document.getElementById('portfolio-container')
                     // console.log(resp.data)
                     book_data = resp.data
@@ -452,7 +452,11 @@
 
                             if ( type == "name") {
                                 if (item.title.toLowerCase().includes(search.toLowerCase()) || search == '') view = true;
-                                if (item.author.includes(search)) view = true;
+                                
+                                var authors = item.author.map(v => v.toLowerCase());
+                                    
+                                if (authors.includes(search.toLowerCase())) view = true;
+
                             } else if (type = "category") {
                                 if (search != []) {
                                     view = search.every(i => item.categories.includes(i));
@@ -465,6 +469,9 @@
                                 else view = (item.publisher.includes(search));
                             }
                             if (view) {
+                                _total_price += item.basePrice;
+
+
                                 let imgu = ""
                                 if (item.image != null) {
                                     imgu = item.image
@@ -539,18 +546,18 @@
                             }
                         })
                         .join('')
+                        console.log(_total_price)
+                        document.getElementById("total-price").innerHTML="Tổng giá tiền = "+ _total_price + ",00 VND";
+                        _total_price = 0;
                 }
-
             })
             xhr.open('GET', '/api/book')
             xhr.send()
+
         }
-
-
         list_all_book('', 'name')
         list_all_category()
         list_all_publisher()
-
 
     </script>
     <script>

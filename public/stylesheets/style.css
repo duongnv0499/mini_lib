@@ -830,3 +830,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   .search-group {
       float: right;
   }
+
+  #total-price {
+      font-style: italic;
+  }
