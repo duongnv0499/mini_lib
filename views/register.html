@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Library</title>
@@ -100,4 +100,290 @@
             xhr.send(data)
         })
     </script>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Library</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script>
+            const type = localStorage.getItem('type') || ''
+            if (type) window.location.href = `/${type}`
+        </script>
+    </head>
+    <body class="m-h-screen bg-gray-800">
+        <nav
+            class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
+        >
+            <a href="/" class="font-bold">Library</a>
+            <div>
+                <a
+                    href="/login"
+                    class="border border-white rounded px-8 py-2 mr-2"
+                    >Login</a
+                >
+                <a href="/register" class="border border-white rounded px-8 py-2"
+                    >Register</a
+                >
+            </div>
+        </nav>
+        <div class="py-6 px-32 text-white">
+            You need login to see inside content.
+        </div>
+    </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Library</title>
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <script>
+            localStorage.removeItem('type')
+        </script>
+    </head>
+    <body class="m-h-screen bg-gray-800">
+        <nav
+            class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
+        >
+            <a href="/" class="font-bold">Library</a>
+            <div>
+                <a
+                    href="/login"
+                    class="border border-white rounded px-8 py-2 mr-2"
+                    >Login</a
+                >
+                <a href="/login" class="border border-white rounded px-8 py-2"
+                    >Register</a
+                >
+            </div>
+        </nav>
+        <div class="py-6 px-32 flex justify-center items-center">
+            <div
+                class="w-1/2 px-3 py-5 border border-white rounded flex flex-wrap justify-center"
+            >
+                <label class="username w-full text-white mb-4">Username</label>
+                <input
+                    class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                    id="usernamefield"
+                />
+                <label class="username w-full text-white mb-4">Password</label>
+                <input
+                    class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
+                    id="passwordfield"
+                    type="password"
+                />
+                <button
+                    class="bg-gray-700 text-white px-4 py-2 rounded"
+                    id="login"
+                >
+                    Login
+                </button>
+            </div>
+        </div>
+    </body>
+    <script>
+        const loginButton = document.getElementById('login')
+        loginButton.addEventListener('click', function () {
+            const userInp = document.getElementById('usernamefield')
+            const passwordInp = document.getElementById('passwordfield')
+            const username = userInp.value
+            const password = passwordInp.value
+            if (!username || !password) return
+            var data = JSON.stringify({
+                username: username,
+                password: password,
+            })
+
+            const xhr = new XMLHttpRequest()
+            xhr.withCredentials = true
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    const user = resp.data.user
+                    const token = resp.data.token
+                    const type = resp.data.user.type
+                    
+                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('type', type)
+                    window.location.href = `/${type}`
+                }
+            })
+
+            xhr.open('POST', '/api/user/login')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(data)
+        })
+    </script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V18</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/login-vendor/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/login-vendor/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/login-vendor/css/main.css">
+<!--===============================================================================================-->
+
+<script>
+    localStorage.removeItem('type')
+</script>
+</head>
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-43">
+						Đăng kí 
+					</span>
+					
+					
+					<div  class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input id="usernamefield" class="input100" type="text" name="username">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Tên Người dùng</span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input id="passwordfield" class="input100" type="password" name="pass">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Mật Khẩu</span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input id="repasswordfield" class="input100" type="password" name="pass">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Nhập lại mật khẩu</span>
+					</div>
+
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+					
+						<div>
+							<a href="/register" class="txt1">
+								Quay lại trang đăng nhập ?
+							</a>
+						</div>
+					</div>
+			
+
+					<div class="container-login100-form-btn">
+						<button id="login" type="button" class="login100-form-btn">
+							Đăng kí
+						</button>
+					</div>
+					
+				
+				</form>
+				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
+				</div>
+			</div>
+		</div>
+    </div>
+    
+
+    <script>
+      
+      const loginButton = document.getElementById('login')
+        loginButton.addEventListener('click', function () {
+            const userInp = document.getElementById('usernamefield')
+            const passwordInp = document.getElementById('passwordfield')
+            const repasswordInp = document.getElementById('repasswordfield')
+            
+            if (passwordInp.value !== repasswordInp.value) return alert('Passwords are not match')
+
+            const username = userInp.value
+            const password = passwordInp.value
+            if (!username || !password) return
+            var data = JSON.stringify({
+                username: username,
+                type: 'customer',
+                password: password,
+            })
+
+            const xhr = new XMLHttpRequest()
+            xhr.withCredentials = true
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === 4) {
+                    const resp = JSON.parse(this.responseText)
+                    if (!resp.success) return alert(resp.message)
+                    const user = resp.data.user
+                    const token = resp.data.token
+                    const type = resp.data.user.type
+
+                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('type', type)
+                    window.location.href = `/${type}`
+                }
+            })
+
+            xhr.open('POST', '/api/user/register')
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(data)
+        })
+
+    </script>
+	
+	
+
+	
+	
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/bootstrap/js/popper.js"></script>
+	<script src="/login-vendor/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/login-vendor/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/login-vendor/js/main.js"></script>
+
+</body>
 </html>
+
