@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-         <!-- Basic Page Needs
-     ================================================== -->
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
- 
-     <title>Mini Lib</title>
- 
-     <meta name="description" content="">
-     <meta name="author" content="">
-     <meta name="keywords" content="">
- 
-     <!-- Mobile Specific Metas
-     ================================================== -->
-     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-     <meta name="apple-mobile-web-app-capable" content="yes" />
- 
-     <!-- Fonts -->
-     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <title>Mini Lib</title>
 
-     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
- 
-     <!-- Custom styles for this template -->
-     <link href="/stylesheets/style.css" rel="stylesheet">
-     <link href="/stylesheets/responsive.css" rel="stylesheet">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Favicon
+    ================================================== -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png"> -->
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/responsive.css" rel="stylesheet">
+
+     
+     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
     <script>
         var xhr = new XMLHttpRequest()
@@ -39,6 +51,18 @@
     </script>
 </head>
 <body class="m-h-screen">
+
+
+
+
+  
+
+
+
+
+
+
+
 
     <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
         <nav id="primary-navigation" class="site-navigation">
@@ -72,54 +96,38 @@
 
             </div>
         </nav><!-- /.primary-navigation -->
-    </header><!-- /#header -->
-<!-- <nav
-        class="flex justify-between bg-blue-500 text-white px-32 py-6 shadow"
->
-    <div>
-        <a href="/" class="font-bold">Library</a>
-        <a href="/admin/book" class="ml-8">Books</a>
-        <a href="/admin/order">Orders</a>
+    </header>
+    <div class="col-md-4 col-xs-6">
+        <div class="portfolio-item">
+            <img src="assets/img/portfolio-1.jpg" class="img-res" alt="">
+            <div class="portfolio-item-info">
+                <h4>Project Title</h4>
+                <a data-toggle="modal" data-target="#portfolioItem1"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-link"></span></a>
+            </div>
+        </div>
     </div>
-    <div>
-        <button id="logout">Logout</button>
-    </div>
-</nav>
-<div class="px-32 py-6 flex flex-wrap">
-    <label class="username w-full text-white mb-4">Title</label>
-    <input
-            class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
-            id="title"
-            data-role="tagsinput"
-    />
-    <label class="username w-full text-white mb-4">Author</label>
-    <input
-            class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
-            id="author"
-    />
-    <label class="username w-full text-white mb-4">Category</label>
-    <input
-            class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
-            id="categories"
-    />
-    <label class="username w-full text-white mb-4">Publisher</label>
-    <input
-            class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
-            id="publisher"
-    />
-    <label class="username w-full text-white mb-4">Base price</label>
-    <input
-            class="px-3 py-2 border-white w-full text-white rounded bg-gray-700 mb-4"
-            id="basePrice"
-    />
-    <button
-            class="bg-gray-700 text-white px-4 py-2 rounded mt-4"
-            id="create"
-    >
-        Create
-    </button> -->
 
-    <section id="contact" class="site-section section-form text-center">
+
+    <div id="portfolioItem1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                <img class="img-res" src="/img/bg1.jpg" alt="">
+            </div>
+            <div class="modal-body">
+                <h4 class="modal-title">Project title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo finibus tristique. Maecenas dignissim condimentum sem eu tincidunt. Curabitur in dui quis magna vestibulum pulvinar a ut urna. Nam pellentesque mattis urna. Aenean eget lectus sit amet turpis facilisis consectetur quis vel ante. Integer in massa ut nibh ultricies sagittis imperdiet in ante. Nam sed turpis vel ante placerat feugiat ac tempus magna. Nam aliquet ullamcorper dolor non hendrerit.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-fill">Visit Page</a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <section id="contact" class="site-section section-form text-center">
         <div class="container">
 
             <h3>Thêm sách</h3>
@@ -178,11 +186,17 @@
 
             <input type="file" class="col-sm-12 add-image-btn btn btn-border">Thêm Ảnh </input>
             
-        </div>
-    </section><!-- /.section-form -->
-</div>
+        </div> 
+    </section> -->
+
+
+    <!-- <div id="portfolioItem1" class="modal fade" role="dialog"> -->
+
+
 </body>
 <script>
+    let _data = {}
+
     function getValue(key) {
         const inp = document.getElementById(key)
         if (!inp) return null
@@ -211,15 +225,15 @@
             info: getValue('content')
         })
         console.log(data)
-        alert("fucku2")
+        
 
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
-                alert("fucku1")
+                
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
                 location.href = '/admin'
-                alert("fucku")
+                
             }
         })
 
@@ -234,6 +248,7 @@ xhr.addEventListener('readystatechange', function () {
         const resp = JSON.parse(this.responseText)
         if (!resp.success) return alert(resp.message)
         
+        _data = resp.data
         for (const i in resp.data) {
             resp.data[i].categories.forEach(element => {
                 if (!_category.includes(element)) {
@@ -274,12 +289,69 @@ list_all_category()
 </script>
 
 
+<script>
+$(function() {
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  function handleAutocomplete(term) {
+    // use 'term' for custom filtering etc.
+    var options = $.grep(_data, function(e) {
+      return e.title.startsWith(term);
+    });
+    return options;
+  }
+
+  $("#name").autocomplete({
+    minLength: 0,
+    source: function(request, response) {
+      var name = request.term;
+      var data = handleAutocomplete(name); /* get answers from somewhere.. */
+      response(data);
+    },
+    focus: function(event, ui) {
+      $("#name").val(ui.item.title);
+      return false;
+    },
+
+    select: function(event, ui) {
+      $("#name").val(ui.item.title);
+      $("#email").html(ui.item.quantity);
+      
+      document.getElementById("portfolioItem1").innerHTML =
+
+        data = `<div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                <img class="img-res" src="/img/bg1.jpg" alt="">
+            </div>
+            <div class="modal-body">
+                <h4 class="modal-title">Project title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo finibus tristique. Maecenas dignissim condimentum sem eu tincidunt. Curabitur in dui quis magna vestibulum pulvinar a ut urna. Nam pellentesque mattis urna. Aenean eget lectus sit amet turpis facilisis consectetur quis vel ante. Integer in massa ut nibh ultricies sagittis imperdiet in ante. Nam sed turpis vel ante placerat feugiat ac tempus magna. Nam aliquet ullamcorper dolor non hendrerit.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-fill">Visit Page</a>
+            </div>
+            </div>
+        </div>`
+      document.getElementById("portfolioItem1").innerHTML = data
+
+
+      return false;
+    }
+  }).autocomplete("instance")._renderItem = function(ul, item) {
+    return $("<li>")
+      .append('<div data-toggle="modal">' + item.title + "<br>" + item.quantity + "</div>")
+      .appendTo(ul);
+  };
+});
+</script>
+
+
 <script src="javascripts/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="javascripts/skrollr.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
 <script src="javascripts/jquery.countTo.min.js"></script>
-<script src="javascripts/script.js"></script> -->
+<script src="javascripts/script.js"></script>
 </html>

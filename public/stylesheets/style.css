@@ -462,6 +462,10 @@ html, body {
     margin-top: 10px;
 }
 
+#portfolioItem1 {
+    z-index:9999;
+}
+
 /* Modal */
 .modal {
     z-index: 9999;
@@ -622,6 +626,7 @@ a.icon-up-bg:hover {color: #212121;}
 .sec-center h5 {
     padding: 4px 0;
     color: #ecf0f1;
+    
 }
  
 
