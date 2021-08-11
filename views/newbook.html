@@ -37,9 +37,9 @@
     <link href="/stylesheets/responsive.css" rel="stylesheet">
 
      
-     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
         var xhr = new XMLHttpRequest()
@@ -99,9 +99,9 @@
     </header>
     
 
+
     <section id="contact" class="site-section section-form text-center">
         <div class="container">
-
             <h3>Thêm sách</h3>
             <img src="/img/lines.svg" class="img-lines" alt="lines">
             <form>
@@ -147,8 +147,7 @@
                     <div class="col-sm-12">
                         <input type="text" id="categories" class="form-control" placeholder="Thể loại" required>
                     </div>
-
-
+  
                     <div class="col-sm-12">
                         <textarea id="message" id="content" class="form-control" placeholder="Nội Dung" required></textarea>
                     </div>
@@ -162,7 +161,9 @@
     </section>
 
 
-    <!-- <div id="portfolioItem1" class="modal fade" role="dialog"> -->
+    <div id="portfolioItem1" class="modal fade" role="dialog">
+        <!-- Button trigger modal -->
+
 
 
 </body>
@@ -313,17 +314,10 @@ $(function() {
     }
   }).autocomplete("instance")._renderItem = function(ul, item) {
     return $("<li>")
-      .append('<div data-toggle="modal">' + item.title + "<br>" + item.quantity + "</div>")
+      .append('<div data-bs-toggle="modal" data-bs-target="portfolioItem1">' + item.title + "<br> số lượng (" + item.quantity + ")</div>")
       .appendTo(ul);
   };
 });
 </script>
 
-
-<script src="javascripts/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
-<script src="javascripts/jquery.countTo.min.js"></script>
-<script src="javascripts/script.js"></script>
 </html>
