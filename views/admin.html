@@ -363,7 +363,7 @@
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
-                // location.href = '/admin'
+                location.href = '/admin'
                 console.log("done")
             }
         })
