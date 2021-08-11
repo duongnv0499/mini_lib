@@ -45,5 +45,7 @@ router.post('/delete', (req, res) => process(req, res)(deleteBook))
 router.post('/book/ref', (req, res) => process(req, res)(createBookRefInfo))
 router.get('/book/ref', (req, res) => process(req, res)(getBookRefInfo))
 router.patch('/user/bookCopy', (req, res) => process(req, res)(editBookCopy))
-
+router.post('/upload', upload.single('file'), (req, res) =>
+    process(req, res)(uploadFile)
+)
 module.exports = router
