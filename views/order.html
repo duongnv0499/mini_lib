@@ -247,6 +247,7 @@
             data = JSON.stringify({
                 _id: id,
                 status: v,
+                confirmDate: Date.now()
             })
 
             xhr.addEventListener('readystatechange', function () {
