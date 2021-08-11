@@ -9,8 +9,12 @@ const getBookRefInfo = require('../actions/book/getBookRefInfo')
 const createBookCopy = require('../actions/user/createBookCopy')
 const editBookCopy = require('../actions/user/editBookCopy')
 const getBooks = require('../actions/book/getBooks')
+const multer = require('multer')
 const getBookCopy = require('../actions/user/getBookCopy')
+const uploadFile = require('../actions/upload')
 const router = express.Router()
+
+const upload = multer({ dest: 'uploads/' })
 
 const process = (req, res) => action => {
     action(req)
@@ -41,4 +45,9 @@ router.post('/delete', (req, res) => process(req, res)(deleteBook))
 router.post('/book/ref', (req, res) => process(req, res)(createBookRefInfo))
 router.get('/book/ref', (req, res) => process(req, res)(getBookRefInfo))
 router.patch('/user/bookCopy', (req, res) => process(req, res)(editBookCopy))
+
+router.post('/upload', upload.single('file'), (req, res) =>
+    process(req, res)(uploadFile)
+)
+
 module.exports = router
