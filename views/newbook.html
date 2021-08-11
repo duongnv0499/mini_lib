@@ -160,7 +160,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <button href="#" class="col-sm-12 add-image-btn btn btn-border" type="submit">Thêm Ảnh </button>
+                    <input type="file" class="col-sm-12 add-image-btn btn btn-border" id="upload-file">Thêm Ảnh </input>
                         <img class="col-sm-12" src ="/img/book3.png" alt="chua them">
                                            </div>
 
@@ -175,6 +175,8 @@
                 </div>
                 <button id="create" class="btn btn-border">Thêm</button>
             </form>
+
+            <input type="file" class="col-sm-12 add-image-btn btn btn-border">Thêm Ảnh </input>
             
         </div>
     </section><!-- /.section-form -->
@@ -186,6 +188,12 @@
         if (!inp) return null
         return inp.value
     }
+
+    const inp = document.getElementById('upload-file')
+    inp.onchange = function(event) {
+    console.log(inp.files[0].Path)
+}
+
     _category=[]
 
     var now = new Date()

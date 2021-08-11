@@ -301,8 +301,6 @@
     /.section-form -->
 
 </main><!-- /#main -->
-
-
 <script>
 
     function add(i) {
@@ -329,10 +327,6 @@
                     });
                     // if (!_category.includes())
                 }
-
-
-
-
                 const container = document.getElementById('search-category')
                 container.innerHTML = _category
                     .map(function (item, index) {
@@ -426,7 +420,7 @@
                             const data =
 
                                 `
-                            <div class="col-md-3 col-xs-4">
+                            <div class="col-md-3 col-xs-3">
                             <div class="portfolio-item">
                             <img src="/img/bg.jpeg" class="img-res" alt="">
                             <div class="portfolio-item-info">
@@ -439,16 +433,18 @@
                             <a id="${item._ids[0]}" onclick={add(this)} ><span class="glyphicon glyphicon-link"></span></a>
                             </div><!-- /.portfolio-item-info -->
                             </div><!-- /.portfolio-item -->
-                            <button class="bg-blue-500 text-white mt-4 bg-blue-500 px-3 py-2 rounded" name="${
-                                    item.title
-                                }" id="${item._ids[0]}" onclick={edit(${JSON.stringify(item)})}>
-                            Edit
-                            </button>
-                            <button class="bg-blue-500 text-white mt-4 bg-blue-500 px-3 py-2 rounded" name="${
-                                    item.title
-                                }" id="${item._ids[0]}" onclick={xoa(${JSON.stringify(item)})}>
-                            xoa
-                            </button>
+                            <div class="btn-group">
+                                <button class="btn col-xs-6" name="${
+                                        item.title
+                                    }" id="${item._ids[0]}" onclick={edit(${JSON.stringify(item)})}>
+                                Sửa
+                                </button>
+                                <button class="btn col-xs-6"  name="${
+                                        item.title
+                                    }" id="${item._ids[0]}" onclick={xoa(${JSON.stringify(item)})}>
+                                Xóa 
+                                </button>
+                            </div>
                             </div>
 
                             `
