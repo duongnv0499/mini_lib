@@ -1,6 +1,7 @@
 const Book = require('../../models/Book')
 
 const editBook = async req => {
+    console.log(req)
     const {
         id,
         title,
@@ -10,6 +11,7 @@ const editBook = async req => {
         basePrice,
         quantity,
         info,
+        image,
         ddc
     } = req.body
 
@@ -25,6 +27,7 @@ const editBook = async req => {
         basePrice: basePrice,
         publisher: publisher,
         info: info,
+        image,
         ddc: ddc,
     });
 }
