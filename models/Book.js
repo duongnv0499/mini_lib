@@ -6,7 +6,6 @@ const Book = model(
     'book',
     new Schema({
         title: String,
-        banner: String,
         author: [String],
         categories: [String],
         basePrice: {type: Number, default: 0},

@@ -18,7 +18,7 @@ const getBooks = async req => {
                 // count: { $sum: 1 },
                 title: { $first: '$title' },
                 author: { $first: '$author' },
-                banner: { $first: '$banner' },
+                image: { $first: '$image' },
                 publisher: { $first: '$publisher' },
                 categories: { $first: '$categories' },
                 basePrice: { $first: '$basePrice' },
