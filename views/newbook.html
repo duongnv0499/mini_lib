@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Page Needs
-    ================================================== -->
+    <!-- Basic Page Needs
+      ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -36,10 +36,10 @@
     <link href="/stylesheets/style.css" rel="stylesheet">
     <link href="/stylesheets/responsive.css" rel="stylesheet">
 
-     
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
         var xhr = new XMLHttpRequest()
@@ -53,121 +53,144 @@
 <body class="m-h-screen">
 
 
-
-
-  
-
-
-
-
-
-
-
-
-    <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
-        <nav id="primary-navigation" class="site-navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-
-                    <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse" aria-expanded="false" >
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    
-                    <!-- <a href="#hero" class="site-logo"><img src="/img/logo.png" alt="logo"></a> -->
-
-                </div><!-- /.navbar-header -->
-
-                <div class="main-menu" id="portfolio-perfect-collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
-                        <li class="page-scroll"><a href="/admin">Giá Sách</a></li>
-                        <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
-                        <li class="page-scroll"><a href="/customer/order">Lịch sử mượn</a></li>
-                        
-                        <li ><a id="logout" class="btn btn-border">logout</a></li>
-                        
-                    </ul><!-- /.navbar-nav -->
-
-                </div><!-- /.navbar-collapse -->
-
-            </div>
-        </nav><!-- /.primary-navigation -->
-    </header>
-    
-
-
-    <section id="contact" class="site-section section-form text-center">
+<header id="masthead" class="site-header" data-anchor-target=".hero"
+        data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);"
+        data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
+    <nav id="primary-navigation" class="site-navigation">
         <div class="container">
-            <h3>Thêm sách</h3>
-            <img src="/img/lines.svg" class="img-lines" alt="lines">
-            <form>
-                <div class="add-form row">
-                    <div class="col-sm-8">
-                        <div>
-                            <input type="text" id="name" class="form-control mt-x-0" placeholder="Tên sách" required>
-                        </div>
-                        <div>
-                            <input type="text" id="publisher" class="form-control mt-x-0" placeholder="Nhà xuất bản" required>
-                        </div>
-                        <div>
-                            <input type="text" id="authors" class="form-control" placeholder="Tác giả" required>   
-                        </div>
-                        <div>
-                            <input type="text" id="quantity" class="form-control" placeholder="Số lượng" required>   
-                        </div>
-                        <div>
-                            <input type="text" id="added_date" class="form-control" placeholder="Ngày Thêm" required>   
-                        </div>
-                        <div>
-                            <input type="text" id="price" class="form-control" placeholder="Giá tiền" required>   
-                        </div>
-                        <div>
-                            <div class="sec-center col-md-9"> 
-                                <div class="checkbox-container">
-                                    <ul id="search-category" class="ks-cboxtags">
-                                    </ul>
-                                  </div>
-                                  
-                                  
-                            </div>
-                            <div class="col-sm-3">
-                                <button class="add-category-btn btn btn-border" type="submit">Thêm Thể Loại</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                    <input type="file" class="col-sm-12 add-image-btn btn btn-border" id="upload-file">Thêm Ảnh </input>
-                        <img class="col-sm-12" src ="/img/book3.png" alt="chua them">
-                                           </div>
+            <div class="navbar-header page-scroll">
 
-                    <div class="col-sm-12">
-                        <input type="text" id="categories" class="form-control" placeholder="Thể loại" required>
+                <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse"
+                        aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- <a href="#hero" class="site-logo"><img src="/img/logo.png" alt="logo"></a> -->
+
+            </div><!-- /.navbar-header -->
+
+            <div class="main-menu" id="portfolio-perfect-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="page-scroll"><a href="#hero">Tìm Kiếm</a></li>
+                    <li class="page-scroll"><a href="/admin">Giá Sách</a></li>
+                    <li class="page-scroll"><a href="/customer/order">Đơn mượn</a></li>
+                    <li class="page-scroll"><a href="/customer/order">Lịch sử mượn</a></li>
+
+                    <li><a id="logout" class="btn btn-border">logout</a></li>
+
+                </ul><!-- /.navbar-nav -->
+
+            </div><!-- /.navbar-collapse -->
+
+        </div>
+    </nav><!-- /.primary-navigation -->
+</header>
+
+
+<section id="contact" class="site-section section-form text-center">
+    <div class="container">
+        <h3>Thêm sách</h3>
+        <img src="/img/lines.svg" class="img-lines" alt="lines">
+        <form>
+            <div class="add-form row">
+                <div class="col-sm-8">
+                    <div>
+                        <input type="text" id="name" class="form-control mt-x-0" placeholder="Tên sách" required>
                     </div>
-  
-                    <div class="col-sm-12">
-                        <textarea id="message" id="content" class="form-control" placeholder="Nội Dung" required></textarea>
+                    <div>
+                        <input type="text" id="publisher" class="form-control mt-x-0" placeholder="Nhà xuất bản"
+                               required>
+                    </div>
+                    <div>
+                        <input type="text" id="authors" class="form-control" placeholder="Tác giả" required>
+                    </div>
+                    <div>
+                        <input type="text" id="quantity" class="form-control" placeholder="Số lượng" required>
+                    </div>
+                    <div>
+                        <input type="text" id="price" class="form-control" placeholder="Giá tiền" required>
+                    </div>
+                    <div>
+                        <div class="sec-center col-md-9">
+                            <div class="checkbox-container">
+                                <ul id="search-category" class="ks-cboxtags">
+                                </ul>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="add-category-btn btn btn-border" type="submit">Thêm Thể Loại</button>
+                        </div>
                     </div>
                 </div>
-                <button id="create" class="btn btn-border">Thêm</button>
-            </form>
+                <!--                    <div class="col-sm-4">-->
+                <!--                    <input type="file" class="col-sm-12 add-image-btn btn btn-border" id="upload-file">Thêm Ảnh </input>-->
+                <!--                        <img class="col-sm-12" src ="/img/book3.png" alt="chua them">-->
+                <!--                                           </div>-->
+                <div class="col-sm-4">
+                    <label for="fileUpload">Upload file here </label>
+                    <input type="file" id="fileUpload" accept="image/*"/>
+                    <button id="uploadBtn">Upload</button>
+                    <div id="loading"></div>
+                </div>
 
-            <input type="file" class="col-sm-12 add-image-btn btn btn-border">Thêm Ảnh </input>
-            
-        </div> 
-    </section>
+
+                <div class="col-sm-12">
+                    <input type="text" id="categories" class="form-control" placeholder="Thể loại" required>
+                </div>
+
+                <div class="col-sm-12">
+                    <textarea id="content" class="form-control" placeholder="Nội Dung" required></textarea>
+                </div>
+            </div>
+            <button id="create" class="btn btn-border">Thêm</button>
+        </form>
+
+<!--        <div class="col-sm-4">-->
+<!--            <label for="fileUpload">Upload file here </label>-->
+<!--            <input type="file" id="fileUpload" accept="image/*"/>-->
+<!--            <button id="uploadBtn">Upload</button>-->
+<!--            <div id="loading"></div>-->
+<!--        </div>-->
+
+    </div>
+</section>
 
 
-    <div id="portfolioItem1" class="modal fade" role="dialog">
-        <!-- Button trigger modal -->
-
+<div id="portfolioItem1" class="modal fade" role="dialog"></div>
 
 
 </body>
 <script>
+
+    var link = ""
+    let button = document.getElementById('uploadBtn')
+    let request = new XMLHttpRequest()
+    let loading = document.getElementById('loading')
+
+    request.addEventListener('readystatechange', function () {
+        if (this.readyState === 4) {
+            loading.innerHTML = ''
+            const resp = JSON.parse(this.responseText)
+            link = resp.data.url
+            alert(link)
+        }
+    })
+
+    button.addEventListener('click', function () {
+        let input = document.getElementById('fileUpload')
+        let form = new FormData()
+        form.append('file', input.files[0])
+        request.open('POST', '/api/upload')
+        loading.innerHTML = 'loading'
+        request.send(form)
+    })
+
     let _data = {}
 
     function getValue(key) {
@@ -176,17 +199,16 @@
         return inp.value
     }
 
-    const inp = document.getElementById('upload-file')
-    inp.onchange = function(event) {
-    console.log(inp.files[0].Path)
-}
 
-    _category=[]
+    _category = []
 
-    var now = new Date()
+    function temp() {
+        alert(link)
+    }
 
     const loginButton = document.getElementById('create')
     loginButton.addEventListener('click', function () {
+        alert(link)
         data = JSON.stringify({
             title: getValue('name'),
             author: getValue('authors').split(","),
@@ -194,19 +216,18 @@
             publisher: getValue('publisher'),
             basePrice: getValue('price'),
             quantity: getValue('quantity'),
-            addDate: now.toLocaleString(),
-            info: getValue('content')
+            addDate: Date.now().toLocaleString(),
+            info: getValue('content'),
+            image: link
         })
         console.log(data)
-        
+
 
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
-                
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
                 location.href = '/admin'
-                
             }
         })
 
@@ -214,44 +235,44 @@
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(data)
     })
+
     function list_all_category() {
 
-xhr.addEventListener('readystatechange', function () {
-    if (this.readyState === 4) {
-        const resp = JSON.parse(this.responseText)
-        if (!resp.success) return alert(resp.message)
-        
-        _data = resp.data
-        for (const i in resp.data) {
-            resp.data[i].categories.forEach(element => {
-                if (!_category.includes(element)) {
-                _category.push(element)
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+
+                _data = resp.data
+                for (const i in resp.data) {
+                    resp.data[i].categories.forEach(element => {
+                        if (!_category.includes(element)) {
+                            _category.push(element)
+                        }
+                    });
+                    // if (!_category.includes())
                 }
-            });
-            // if (!_category.includes())
-        }
 
 
-
-
-        const container = document.getElementById('search-category')
-        container.innerHTML = _category
-            .map(function (item, index) {
-                id = "checkbox" + String(index);
-                const data =
-                    `
+                const container = document.getElementById('search-category')
+                container.innerHTML = _category
+                    .map(function (item, index) {
+                        id = "checkbox" + String(index);
+                        const data =
+                            `
                 <li><input type="checkbox" id="${id}" value="${item}" checked onchange="search_category()"><label for="${id}">${item}</label></li>
                 `
-                return data.trim()
-            })
-            .join('')
-    }
-})
-xhr.open('GET', '/api/book')
-xhr.send()
+                        return data.trim()
+                    })
+                    .join('')
+            }
+        })
+        xhr.open('GET', '/api/book')
+        xhr.send()
 
-}
-list_all_category()
+    }
+
+    list_all_category()
 </script>
 <script>
     const logout = document.getElementById('logout')
@@ -263,36 +284,35 @@ list_all_category()
 
 
 <script>
-$(function() {
+    $(function () {
 
+        function handleAutocomplete(term) {
+            // use 'term' for custom filtering etc.
+            var options = $.grep(_data, function (e) {
+                return e.title.startsWith(term);
+            });
+            return options;
+        }
 
-  function handleAutocomplete(term) {
-    // use 'term' for custom filtering etc.
-    var options = $.grep(_data, function(e) {
-      return e.title.startsWith(term);
-    });
-    return options;
-  }
+        $("#name").autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                var name = request.term;
+                var data = handleAutocomplete(name); /* get answers from somewhere.. */
+                response(data);
+            },
+            focus: function (event, ui) {
+                $("#name").val(ui.item.title);
+                return false;
+            },
 
-  $("#name").autocomplete({
-    minLength: 0,
-    source: function(request, response) {
-      var name = request.term;
-      var data = handleAutocomplete(name); /* get answers from somewhere.. */
-      response(data);
-    },
-    focus: function(event, ui) {
-      $("#name").val(ui.item.title);
-      return false;
-    },
+            select: function (event, ui) {
+                $("#name").val(ui.item.title);
+                $("#email").html(ui.item.quantity);
 
-    select: function(event, ui) {
-      $("#name").val(ui.item.title);
-      $("#email").html(ui.item.quantity);
-      
-      document.getElementById("portfolioItem1").innerHTML =
+                document.getElementById("portfolioItem1").innerHTML =
 
-        data = `<div class="modal-dialog">
+                    data = `<div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
@@ -307,17 +327,17 @@ $(function() {
             </div>
             </div>
         </div>`
-      document.getElementById("portfolioItem1").innerHTML = data
+                document.getElementById("portfolioItem1").innerHTML = data
 
 
-      return false;
-    }
-  }).autocomplete("instance")._renderItem = function(ul, item) {
-    return $("<li>")
-      .append('<div data-bs-toggle="modal" data-bs-target="portfolioItem1">' + item.title + "<br> số lượng (" + item.quantity + ")</div>")
-      .appendTo(ul);
-  };
-});
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append('<div data-bs-toggle="modal" data-bs-target="portfolioItem1">' + item.title + "<br> số lượng (" + item.quantity + ")</div>")
+                .appendTo(ul);
+        };
+    });
 </script>
 
 </html>

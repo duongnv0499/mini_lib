@@ -10,6 +10,7 @@ const createBook = async req => {
         publisher,
         addDate,
         info,
+        image
     } = req.body
 
     const books =
@@ -22,6 +23,7 @@ const createBook = async req => {
             quantity,
             addDate,
             info,
+            image
         })
 
     const existed = await Book.findOne({title: title, author: author, publisher: publisher})

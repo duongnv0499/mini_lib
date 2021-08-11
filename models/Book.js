@@ -14,6 +14,7 @@ const Book = model(
         addDate: String,
         info: String,
         quantity: {type: Number, default: 0},
+        image: String,
     }),
     'book'
 )
