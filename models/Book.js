@@ -8,6 +8,7 @@ const Book = model(
         title: String,
         author: [String],
         categories: [String],
+        ddc: String,
         basePrice: {type: Number, default: 0},
         publisher: String,
         addDate: String,

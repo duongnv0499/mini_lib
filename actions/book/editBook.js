@@ -10,6 +10,7 @@ const editBook = async req => {
         basePrice,
         quantity,
         info,
+        ddc
     } = req.body
 
     // const existed = await Book.findOne({_id: id})
@@ -23,7 +24,8 @@ const editBook = async req => {
         categories: categories,
         basePrice: basePrice,
         publisher: publisher,
-        info: info
+        info: info,
+        ddc: ddc,
     });
 }
 

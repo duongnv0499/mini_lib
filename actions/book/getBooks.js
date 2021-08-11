@@ -21,6 +21,7 @@ const getBooks = async req => {
                 image: { $first: '$image' },
                 publisher: { $first: '$publisher' },
                 categories: { $first: '$categories' },
+                ddc: { $first: '$ddc' },
                 basePrice: { $first: '$basePrice' },
                 quantity: { $first: '$quantity' },
                 info: { $first: '$info' },
