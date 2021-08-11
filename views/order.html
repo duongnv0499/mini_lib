@@ -298,6 +298,8 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
 
         // orderList
 
+    console.log(orderList)
+
     console.log (Object.entries(order))
 
     function submit() {
@@ -314,6 +316,7 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
         const checkoutdate = new Date(coInp.value).getTime()
         const dueInp = document.getElementById('dueDate')
         const duedate = new Date(dueInp.value).getTime()
+        const name = document.getElementById('name').value;
 
         if (isNaN(checkoutdate) || isNaN(duedate)) return false
         const customer = JSON.parse(localStorage.getItem('user') || '[]')[
@@ -452,6 +455,13 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                     } else if (item.status == "timeout") {
                         card_status = "card-2"
                     }
+                    name=""
+                    if (item.customer.username == "admin" || item.customer.username == "root") {
+                        name = item.name
+                    } else {
+                        name = item.customer.username || item.customer.name
+                    }
+
                     const data = `
                         <div class="card col-md-3 ${card_status}">
                                     <div class="font-bold mb-2">
@@ -459,15 +469,12 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                                     </div>
                                     <hr>
                                     <div class="text-xs italic mb-1">
-                                        Customer: ${
-                        item.customer.name ||
-                        item.customer.username
-                    }
+                                        Customer: ${name}
                                     </div>
                                      <div class="text-xs italic mb-1">
                                         ngày mượn: ${
-                        item.confirmDate
-                    }
+                                        item.confirmDate
+                                    }
                                     </div>
                                     <div class="text-xs italic mb-1">
                                         Checkout: ${checkout}
