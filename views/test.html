@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <span>UP FILE</span>
+        <div>
+            <label for="fileUpload">Upload file here </label>
+            <input type="file" id="fileUpload" accept="image/*" />
+            <button id="uploadBtn">Upload</button>
+        </div>
+        <script>
+            let button = document.getElementById('uploadBtn')
+
+            button.addEventListener('click', function () {
+                let request = new XMLHttpRequest()
+                request.addEventListener('readystatechange', function () {
+                    if (this.readyState === 4) {
+                        const resp = JSON.parse(this.responseText)
+                        if (!resp.success) return alert(resp.message)
+                        alert('SUCCEESS' + resp.data)
+                    }
+                })
+                let input = document.getElementById('fileUpload')
+
+                let form = new FormData()
+                form.append('file', input.files[0])
+
+                request.open('POST', '/api/upload')
+                request.send(form)
+            })
+        </script>
+    </body>
+</html>

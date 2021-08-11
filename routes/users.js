@@ -31,4 +31,6 @@ router.get('/customer/order', function (req, res, next) {
     res.render('orderbook.html')
 })
 
+router.get('/test', (req, res) => res.render('test.html'))
+
 module.exports = router
