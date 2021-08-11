@@ -26,7 +26,7 @@ const BookCopy = model(
             default: 'created',
         },
         confirmDate: {
-            type: Date,
+            type: String,
             default: 0
         },
         dueDate: Date,
