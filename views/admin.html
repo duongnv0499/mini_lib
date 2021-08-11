@@ -316,16 +316,33 @@
 </main><!-- /#main -->
 <script>
 
-    function add(i) {
-        const item = {title: i.name, id: i.id}
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-        localStorage.setItem('cart', JSON.stringify([...cart, item]))
-        alert('Add book to cart!')
-    }
+        function add(i) {
+            // localStorage.removeItem('cart');
+                    console.log(document.getElementById(i.id).className)
+                    obj = document.getElementById(i.id)
+                    // console.log(i.id)
+
+                    const item = { title: obj.className, id: i.id }
+                    const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+                    localStorage.setItem('cart', JSON.stringify([...cart, item]))
+                    console.log(cart)
+                    alert("đã thêm sách vào đơn mượn")
+                }
+
 
     let _category = []
     let _publisher = []
     let _total_price = 0
+    let _ddc = []
+
+
+
+
+
+
+
+
+
 
     function list_all_category() {
         var cat = new XMLHttpRequest()
@@ -334,30 +351,31 @@
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
+                console.log(resp)
 
-                for (const i in resp.data) {
-                    resp.data[i].categories.forEach(element => {
-                        if (!_category.includes(element)) {
-                            _category.push(element)
-                        }
-                    });
-                    // if (!_category.includes())
-                }
-                const container = document.getElementById('search-category')
+                // for (const i in resp.data) {
+                //     resp.data[i].categories.forEach(element => {
+                //         if (!_category.includes(element)) {
+                //             _category.push(element)
+                //         }
+                //     });
+                //     // if (!_category.includes())
+                // }
+                // const container = document.getElementById('search-category')
 
-                container.innerHTML = _category
-                    .map(function (item, index) {
-                        id = "checkbox" + String(index);
-                        const data =
-                            `
-                        <li><input type="checkbox" id="${id}" value="${item}" onchange="search_category(this)"><label for="${id}">${item}</label></li>
-                        `
-                        return data.trim()
-                    })
-                    .join('')
+                // container.innerHTML = _category
+                //     .map(function (item, index) {
+                //         id = "checkbox" + String(index);
+                //         const data =
+                //             `
+                //         <li><input type="checkbox" id="${id}" value="${item}" onchange="search_category(this)"><label for="${id}">${item}</label></li>
+                //         `
+                //         return data.trim()
+                //     })
+                //     .join('')
             }
         })
-        cat.open('GET', '/api/book')
+        cat.open('GET', '/api/ddc')
         cat.send()
 
     }

@@ -2,7 +2,7 @@ const {Types} = require('mongoose')
 const {model} = require('mongoose')
 const {Schema} = require('mongoose')
 
-const Book = model(
+const ddc = model(
     'ddc',
     new Schema({
         num: String,
@@ -10,10 +10,11 @@ const Book = model(
         data: [
             {
                 type: Types.ObjectId,
+                ref: 'data'
             },
         ],
     }),
     'ddc'
 )
 
-module.exports = Book
+module.exports = ddc

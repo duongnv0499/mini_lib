@@ -312,6 +312,7 @@
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
+                console.log(resp    )
 
                 const container = document.getElementById('search-category')
                 //console.log (JSON.stringify(resp.data))
@@ -327,7 +328,7 @@
                     .join('')
             }
         })
-        xhr.open('GET', '/api/book')
+        xhr.open('GET', '/api/ddc')
         xhr.send()
 
         }

@@ -13,12 +13,7 @@ const getDdc = async req => {
                 // count: { $sum: 1 },
                 num: { $first: '$num' },
                 name: { $first: '$name' },
-                data: [
-                    {
-                        type: [Types.ObjectId],
-                        ref: 'data',
-                    },
-                ],
+                data: {$first: '$data'},
                 _ids: { $push: '$_id' },
             },
         },

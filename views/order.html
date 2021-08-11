@@ -233,8 +233,35 @@
 
 
 <section id="portfolio" class="site-section section-portfolio">
-    <button class="btn">Thêm mới</button>
+    <div class="col-sm-9">
+        <div class ="col-sm-3"> 
 
+            <div class="order-form">
+                
+                <label for="name">người mượn sách:</label>
+                <input type="text" id="name" name="name" class="form-control">
+
+                <label for="checkout">Ngày hứa trả:</label>
+                <input type="date" id="checkoutDate" name="checkout" class="form-control">
+                
+                <label for="duedate">Hạn trả:</label>
+                <input type="date" id="dueDate" name="duedate" class="form-control">
+            <button onclick="submit()" class="btn">Xac Nhan</button></div>
+        </div>
+        <div class ="col-sm-6">
+            <div id="currenoder_cont"></div>
+        
+            <div>
+                <div>Sách Hiện Tại:</div>
+                <div class="container" id="currentorder">
+                </div>
+
+            </div>
+
+        </div>
+    <hr>
+</div>
+     
     <div class="container" id="cards">
         <div class="card col-md-3 card-1">
             <div class="card__icon"><i class="fas fa-bolt"></i></div>
@@ -248,6 +275,112 @@
 </section>
 
 <script>
+
+
+const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
+        (result, item) => {
+            // console.log (item)
+            // console.log(result)
+            return {...result, [item.id]: item.title}
+        },
+        {}
+    )
+
+
+
+    // console.log (order);
+
+    const orderList = Object.entries(order)
+        .map(([key, title]) => {
+            return`<div class="card col-md-2 card-7"><div class="font-bold mb-2">${title}</div></div>`
+        })
+        .join('')
+
+        // orderList
+
+    console.log (Object.entries(order))
+
+    function submit() {
+        const book = Object.keys(
+            JSON.parse(localStorage.getItem('cart') || '[]').reduce(
+                (result, item) => {
+                    return {...result, [item.id]: item.title}
+                },
+                {}
+            )
+        )
+        if (!book.length) return
+        const coInp = document.getElementById('checkoutDate')
+        const checkoutdate = new Date(coInp.value).getTime()
+        const dueInp = document.getElementById('dueDate')
+        const duedate = new Date(dueInp.value).getTime()
+
+        if (isNaN(checkoutdate) || isNaN(duedate)) return false
+        const customer = JSON.parse(localStorage.getItem('user') || '[]')[
+            '_id'
+            ]
+        console.log("customer")
+        console.log(customer)
+        const _data = {
+            customer,
+            book,
+            name, 
+            dueDate: duedate,
+            checkout: checkoutdate,
+        }
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+                console.log("second")
+                localStorage.setItem('cart', '[]')
+                window.location.reload()
+                console.log(resp.data)
+                
+            }
+        })
+
+        xhr.open('POST', '/api/user/bookCopy')
+        xhr.setRequestHeader('Content-Type', 'application/json')
+
+        xhr.send(JSON.stringify(_data))
+    }
+
+    document.getElementById(
+        'currentorder'
+    ).innerHTML = `<div class="flex flex-wrap px-2 mt-4">
+            ${orderList}
+        </div>`.trim()
+
+    function changeStatus(selectObject) {
+        const v = selectObject.value
+        const id = selectObject.name
+        data = JSON.stringify({
+            _id: id,
+            status: v,
+        })
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === 4) {
+                const resp = JSON.parse(this.responseText)
+                if (!resp.success) return alert(resp.message)
+                window.location.reload()
+            }
+        })
+
+        xhr.open('PATCH', '/api/user/bookCopy')
+        xhr.setRequestHeader('Content-Type', 'application/json')
+
+        xhr.send(data)
+    }
+
+
+
+
+
+
+
     function changeStatus(selectObject) {
         const v = selectObject.value
         const id = selectObject.name
