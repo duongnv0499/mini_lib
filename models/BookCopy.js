@@ -25,6 +25,10 @@ const BookCopy = model(
             ],
             default: 'created',
         },
+        confirmDate: {
+            type: Date,
+            default: 0
+        },
         dueDate: Date,
         checkout: Date,
         price: Number,
