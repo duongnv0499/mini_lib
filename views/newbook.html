@@ -149,19 +149,6 @@
                             <div class="sec-center col-md-9"> 
                                 <div class="checkbox-container">
                                     <ul id="search-category" class="ks-cboxtags">
-                                      <li><input type="checkbox" id="checkboxOne" value="Tâm lý" checked onchange="search_category()"><label for="checkboxOne">Tâm lý</label></li>
-                                      <li><input type="checkbox" id="checkboxTwo" value="hài hước" checked onchange="search_category()"><label for="checkboxTwo">hài hước</label></li>
-                                      <li><input type="checkbox" id="checkboxThree" value="lịch sử" checked onchange="search_category()"><label for="checkboxThree">lịch sử:</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
-                                      <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label for="checkboxFour">khoa học</label></li>
                                     </ul>
                                   </div>
                                   
@@ -199,6 +186,7 @@
         if (!inp) return null
         return inp.value
     }
+    _category=[]
 
     var now = new Date()
 
@@ -231,6 +219,43 @@
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(data)
     })
+    function list_all_category() {
+
+xhr.addEventListener('readystatechange', function () {
+    if (this.readyState === 4) {
+        const resp = JSON.parse(this.responseText)
+        if (!resp.success) return alert(resp.message)
+        
+        for (const i in resp.data) {
+            resp.data[i].categories.forEach(element => {
+                if (!_category.includes(element)) {
+                _category.push(element)
+                }
+            });
+            // if (!_category.includes())
+        }
+
+
+
+
+        const container = document.getElementById('search-category')
+        container.innerHTML = _category
+            .map(function (item, index) {
+                id = "checkbox" + String(index);
+                const data =
+                    `
+                <li><input type="checkbox" id="${id}" value="${item}" checked onchange="search_category()"><label for="${id}">${item}</label></li>
+                `
+                return data.trim()
+            })
+            .join('')
+    }
+})
+xhr.open('GET', '/api/book')
+xhr.send()
+
+}
+list_all_category()
 </script>
 <script>
     const logout = document.getElementById('logout')

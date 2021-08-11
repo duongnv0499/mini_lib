@@ -157,7 +157,6 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
           crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
     <link href="/stylesheets/style.css" rel="stylesheet">
     <link href="/stylesheets/responsive.css" rel="stylesheet">
 
@@ -257,14 +256,6 @@
 
         <div class="checkbox-container">
             <ul id="search-category" class="ks-cboxtags">
-                <li><input type="checkbox" id="checkboxOne" value="Tâm lý" checked onchange="search_category()"><label
-                        for="checkboxOne">Tâm lý</label></li>
-                <li><input type="checkbox" id="checkboxTwo" value="hài hước" checked onchange="search_category()"><label
-                        for="checkboxTwo">hài hước</label></li>
-                <li><input type="checkbox" id="checkboxThree" value="lịch sử" checked
-                           onchange="search_category()"><label for="checkboxThree">lịch sử:</label></li>
-                <li><input type="checkbox" id="checkboxFour" value="khoa học" onchange="search_category()"><label
-                        for="checkboxFour">khoa học</label></li>
             </ul>
 
 
@@ -321,21 +312,34 @@
         alert('Add book to cart!')
     }
 
+    var _category = []
+
     function list_all_category() {
 
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
                 const resp = JSON.parse(this.responseText)
                 if (!resp.success) return alert(resp.message)
+                
+                for (const i in resp.data) {
+                    resp.data[i].categories.forEach(element => {
+                        if (!_category.includes(element)) {
+                        _category.push(element)
+                        }
+                    });
+                    // if (!_category.includes())
+                }
+
+
+
 
                 const container = document.getElementById('search-category')
-                console.log(JSON.stringify(resp.data))
-                container.innerHTML = resp.data
+                container.innerHTML = _category
                     .map(function (item, index) {
                         id = "checkbox" + String(index);
                         const data =
                             `
-                        <li><input type="checkbox" id="${id}" value="${JSON.stringify(item)}" checked onchange="search_category()"><label for="${id}">${JSON.stringify(item)}</label></li>
+                        <li><input type="checkbox" id="${id}" value="${item}" checked onchange="search_category()"><label for="${id}">${item}</label></li>
                         `
                         return data.trim()
                     })
@@ -460,7 +464,7 @@
 
 
     list_all_book('')
-    //list_all_category()
+    list_all_category()
 
 
 </script>
