@@ -128,16 +128,18 @@
                         </div>
                     </div>
                 </div>
-                <!--                    <div class="col-sm-4">-->
-                <!--                    <input type="file" class="col-sm-12 add-image-btn btn btn-border" id="upload-file">Thêm Ảnh </input>-->
-                <!--                        <img class="col-sm-12" src ="/img/book3.png" alt="chua them">-->
-                <!--                                           </div>-->
-                <div class="col-sm-4">
-                    <label for="fileUpload">Upload file here </label>
-                    <input type="file" id="fileUpload" accept="image/*"/>
-                    <button id="uploadBtn">Upload</button>
-                    <div id="loading"></div>
-                </div>
+                                   <div class="col-sm-3">
+                                    
+                                        <input class="col-sm-12" type="file" id="fileUpload" accept="image/*"/>
+                                        
+                                        
+                                   
+                                       <img id="avt" class="col-sm-12" src="/img/book3.png" alt="chua them">
+                                                          
+                                        <button type="button" class="col-sm-12" id="uploadBtn">Upload</button>
+                                        <div id="loading"></div>
+                                    </div>
+                
 
 
                 <div class="col-sm-12">
@@ -178,7 +180,7 @@
             loading.innerHTML = ''
             const resp = JSON.parse(this.responseText)
             link = resp.data.url
-            alert(link)
+            document.getElementById("avt").setAttribute("src", link)
         }
     })
 
@@ -250,7 +252,6 @@
                             _category.push(element)
                         }
                     });
-                    // if (!_category.includes())
                 }
 
 

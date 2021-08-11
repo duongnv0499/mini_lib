@@ -83,7 +83,7 @@ h4 {
 
 .btn-group {
     margin-bottom: 20px;
-    margin-top: -35px;
+    
 }
 
 .btn-fill {
@@ -820,4 +820,13 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     .cards {
       justify-content: center;
     }
+  }
+
+
+  .portfolio-item-info h5 {
+      font-size: 15;
+  }
+
+  .search-group {
+      float: right;
   }
