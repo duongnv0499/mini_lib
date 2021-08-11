@@ -1,4 +1,4 @@
-const { Schema, Types, model } = require('mongoose')
+const {Schema, Types, model} = require('mongoose')
 
 const BookCopy = model(
     'bookcopy',
@@ -13,6 +13,7 @@ const BookCopy = model(
             type: Types.ObjectId,
             ref: 'user',
         },
+        name: {type: String},
         status: {
             type: 'String',
             enum: [
