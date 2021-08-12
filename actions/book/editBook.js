@@ -27,7 +27,7 @@ const editBook = async req => {
         basePrice: basePrice,
         publisher: publisher,
         info: info,
-        image,
+        image: image,
         ddc: ddc,
     });
 }

@@ -234,23 +234,24 @@
 
 <section id="portfolio" class="site-section section-portfolio">
     <div class="col-sm-9">
-        <div class ="col-sm-3"> 
+        <div class="col-sm-3">
 
             <div class="order-form">
-                
+
                 <label for="name">người mượn sách:</label>
                 <input type="text" id="name" name="name" class="form-control">
 
-                <label for="checkout">Ngày hứa trả:</label>
+                <label for="checkoutDate">Ngày hứa trả:</label>
                 <input type="date" id="checkoutDate" name="checkout" class="form-control">
-                
+
                 <label for="duedate">Hạn trả:</label>
                 <input type="date" id="dueDate" name="duedate" class="form-control">
-            <button onclick="submit()" class="btn">Xac Nhan</button></div>
+                <button onclick="submit()" class="btn">Xac Nhan</button>
+            </div>
         </div>
-        <div class ="col-sm-6">
+        <div class="col-sm-6">
             <div id="currenoder_cont"></div>
-        
+
             <div>
                 <div>Sách Hiện Tại:</div>
                 <div class="container" id="currentorder">
@@ -259,9 +260,9 @@
             </div>
 
         </div>
-    <hr>
-</div>
-     
+        <hr>
+    </div>
+
     <div class="container" id="cards">
         <div class="card col-md-3 card-1">
             <div class="card__icon"><i class="fas fa-bolt"></i></div>
@@ -277,7 +278,7 @@
 <script>
 
 
-const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
+    const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
         (result, item) => {
             // console.log (item)
             // console.log(result)
@@ -287,20 +288,19 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
     )
 
 
-
     // console.log (order);
 
     const orderList = Object.entries(order)
         .map(([key, title]) => {
-            return`<div class="card col-md-2 card-7"><div class="font-bold mb-2">${title}</div></div>`
+            return `<div class="card col-md-2 card-7"><div class="font-bold mb-2">${title}</div></div>`
         })
         .join('')
 
-        // orderList
+    // orderList
 
     console.log(orderList)
 
-    console.log (Object.entries(order))
+    console.log(Object.entries(order))
 
     function submit() {
         const book = Object.keys(
@@ -322,12 +322,12 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
         const customer = JSON.parse(localStorage.getItem('user') || '[]')[
             '_id'
             ]
-        console.log("customer")
-        console.log(customer)
+        // console.log("customer")
+        // console.log(customer)
         const _data = {
             customer,
             book,
-            name, 
+            name,
             dueDate: duedate,
             checkout: checkoutdate,
         }
@@ -340,7 +340,7 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                 localStorage.setItem('cart', '[]')
                 window.location.reload()
                 console.log(resp.data)
-                
+
             }
         })
 
@@ -356,32 +356,27 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
             ${orderList}
         </div>`.trim()
 
-    function changeStatus(selectObject) {
-        const v = selectObject.value
-        const id = selectObject.name
-        data = JSON.stringify({
-            _id: id,
-            status: v,
-        })
-
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === 4) {
-                const resp = JSON.parse(this.responseText)
-                if (!resp.success) return alert(resp.message)
-                window.location.reload()
-            }
-        })
-
-        xhr.open('PATCH', '/api/user/bookCopy')
-        xhr.setRequestHeader('Content-Type', 'application/json')
-
-        xhr.send(data)
-    }
-
-
-
-
-
+    // function changeStatus(selectObject) {
+    //     const v = selectObject.value
+    //     const id = selectObject.name
+    //     data = JSON.stringify({
+    //         _id: id,
+    //         status: v,
+    //     })
+    //
+    //     xhr.addEventListener('readystatechange', function () {
+    //         if (this.readyState === 4) {
+    //             const resp = JSON.parse(this.responseText)
+    //             if (!resp.success) return alert(resp.message)
+    //             window.location.reload()
+    //         }
+    //     })
+    //
+    //     xhr.open('PATCH', '/api/user/bookCopy')
+    //     xhr.setRequestHeader('Content-Type', 'application/json')
+    //
+    //     xhr.send(data)
+    // }
 
 
     function changeStatus(selectObject) {
@@ -394,6 +389,10 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                 _id: id,
                 status: v,
                 confirmDate: today
+            })
+        } else if (v === 'canceled') {
+            data = JSON.stringify({
+                _id: id,
             })
         } else {
             data = JSON.stringify({
@@ -409,8 +408,10 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                 window.location.reload()
             }
         })
-
-        xhr.open('PATCH', '/api/user/bookCopy')
+        if (v === 'canceled'){
+            console.log(data)
+            xhr.open('PATCH', '/api/user/orderDelete')
+        } else xhr.open('PATCH', '/api/user/bookCopy')
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(data)
     }
@@ -423,6 +424,9 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
             const container = document.getElementById('cards')
             container.innerHTML = resp.data
                 .map(function (item) {
+                    if (item.status === 'checkout' || item.status === 'timeout') {
+                        return null
+                    }
                     console.log(item)
                     const books = item.book
                         .map(b => {
@@ -455,7 +459,7 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                     } else if (item.status == "timeout") {
                         card_status = "card-2"
                     }
-                    name=""
+                    name = ""
                     if (item.customer.username == "admin" || item.customer.username == "root") {
                         name = item.name
                     } else {
@@ -473,8 +477,8 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                                     </div>
                                      <div class="text-xs italic mb-1">
                                         ngày mượn: ${
-                                        item.confirmDate
-                                    }
+                        item.confirmDate
+                    }
                                     </div>
                                     <div class="text-xs italic mb-1">
                                         Checkout: ${checkout}
@@ -485,7 +489,7 @@ const order = JSON.parse(localStorage.getItem('cart') || '[]').reduce(
                                     <div class="">
                                         Price: ${price}
                                     </div>
-                               
+
                                     <select class="w-full px-3 py-2 bg-blue-500 rounded mt-2" id="select" name="${item._id}" onchange="changeStatus(this)">
                                         <option>Select one status</option>
                                         <option value="canceled">Decline</option>
